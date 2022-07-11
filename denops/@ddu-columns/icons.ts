@@ -112,13 +112,13 @@ export class Column extends BaseColumn<Params> {
     return basename(path) + (isDirectory ? "/" : "");
   }
 
-  private getIcon(path: string, expanded = false): IconData | undefined {
-    const sp = specialIcons.get(path);
+  private getIcon(fname: string, expanded = false): IconData | undefined {
+    const sp = specialIcons.get(fname.toLowerCase());
     if (sp) return sp;
-    if (path[path.length - 1] == "/") {
+    if (fname[fname.length - 1] == "/") {
       return expanded ? folderIcons.expand : folderIcons.collaps;
     }
-    const extention = extname(path).substring(1);
+    const extention = extname(fname).substring(1);
     return fileIcons.get(extention);
   }
 }
@@ -147,7 +147,21 @@ const folderIcons: Record<"expand" | "collaps", IconData> = {
   collaps: { icon: "", hl_group: "folder_collaps", color: "Directory" },
 };
 
-const specialIcons = new Map<string, IconData>([]);
+// deno-fmt-ignore-start
+const specialIcons = new Map<string, IconData>([
+  [".ds_store", { icon: "", hl_group: "sp_ds_store", color: colors.default }],
+  [".gitignore", { icon: "", hl_group: "sp_gitignore", color: colors.default }],
+  [".gitconfig", { icon: "", hl_group: "sp_gitconfig", color: colors.default }],
+  ["license", { icon: "", hl_group: "sp_license", color: colors.default }],
+  ["license.md", { icon: "", hl_group: "sp_license", color: colors.default }],
+  ["readme", { icon: "", hl_group: "sp_readme", color: colors.yellow }],
+  ["readme.md", { icon: "", hl_group: "sp_readme", color: colors.yellow }],
+  [".github/", { icon: "", hl_group: "sp_github", color: "Directory" }],
+  ["node_modules/", { icon: "", hl_group: "sp_node_module", color: "Directory" }],
+  ["dockerfile", { icon: "", hl_group: "sp_license", color: colors.blue }],
+  ["makefile", { icon: "", hl_group: "sp_gitconfig", color: colors.default }],
+]);
+// deno-fmt-ignore-end
 
 // deno-fmt-ignore-start
 const fileIcons = new Map<string, IconData>([                                  // nerd font class name
@@ -182,7 +196,7 @@ const fileIcons = new Map<string, IconData>([                                  /
   ["mp3",    { icon: "", hl_group: "file_mp3",    color: colors.aqua        }], // nf-fa-file_audio_o
   ["pdf",    { icon: "", hl_group: "file_pdf",    color: colors.darkOrange  }], // nf-oct-file_pdf
   ["php",    { icon: "", hl_group: "file_php",    color: colors.purple      }], // nf-dev-php
-  ["png",    { icon: "", hl_group: "file_png",    color: colors.aqua        }], // nf-seti-image
+  ["png",    { icon: "", hl_group: "file_png",    color: colors.aqua        }], // nf-fa-file_image_o
   ["py",     { icon: "", hl_group: "file_py",     color: colors.yellow      }], // nf-dev-python
   ["rb",     { icon: "", hl_group: "file_rb",     color: colors.red         }], // nf-dev-ruby
   ["rs",     { icon: "", hl_group: "file_rs",     color: colors.red         }], // nf-dev-rust
