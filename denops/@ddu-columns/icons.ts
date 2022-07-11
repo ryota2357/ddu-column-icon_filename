@@ -9,12 +9,7 @@ import { basename, extname } from "https://deno.land/std@0.147.0/path/mod.ts";
 
 type Params = {
   span: number;
-  highlights: HighlightGroup;
-};
-
-type HighlightGroup = {
-  directoryIcon?: string;
-  directoryName?: string;
+  defaultIcon: IconData;
 };
 
 type ActionData = {
@@ -40,9 +35,7 @@ export class Column extends BaseColumn<Params> {
         const indent = item.__level;
         const iconWidth = await fn.strwidth(
           args.denops,
-          (action.isDirectory
-            ? this.getDirectoryIcon(item.__expanded)
-            : this.getFileIcon(path)).icon,
+          (this.getIcon(path) ?? args.columnParams.defaultIcon).icon,
         ) as number;
         const span = args.columnParams.span;
         const itemLength = await fn.strwidth(
@@ -65,17 +58,15 @@ export class Column extends BaseColumn<Params> {
   }): Promise<GetTextResult> {
     const action = args.item?.action as ActionData;
     const highlights: ItemHighlight[] = [];
-    const path = basename(action.path ?? args.item.word) +
+    const file_name = basename(action.path ?? args.item.word) +
       (action.isDirectory ? "/" : "");
 
-    const iconData = action.isDirectory
-      ? this.getDirectoryIcon(args.item.__expanded)
-      : this.getFileIcon(path);
+    const iconData = this.getIcon(file_name, args.item.__expanded) ?? args.columnParams.defaultIcon;
 
     // create text
     const indent = this.whitespace(args.item.__level);
     const span = this.whitespace(args.columnParams.span);
-    const body = indent + iconData.icon + span + path;
+    const body = indent + iconData.icon + span + file_name;
     const bodyWidth = await fn.strwidth(args.denops, body) as number;
     const padding = this.whitespace(
       Math.max(0, args.endCol - args.startCol - bodyWidth),
@@ -106,7 +97,7 @@ export class Column extends BaseColumn<Params> {
   public params(): Params {
     return {
       span: 1,
-      highlights: {},
+      defaultIcon: { icon: " ", hl_group: "file-default", color: "Normal" },
     };
   }
 
@@ -114,14 +105,14 @@ export class Column extends BaseColumn<Params> {
     return " ".repeat(Math.max(0, count));
   }
 
-  private getDirectoryIcon(expanded: boolean): IconData {
-    return expanded ? folderIcons.expand : folderIcons.collaps;
-  }
-
-  private getFileIcon(path: string): IconData {
+  private getIcon(path: string, expanded = false): IconData | undefined {
+    const sp = specialIcons.get(path);
+    if (sp) return sp;
+    if (path[path.length - 1] == "/") {
+      return expanded ? folderIcons.expand : folderIcons.collaps;
+    }
     const extention = extname(path).substring(1);
-    return (fileIcons.get(extention) ??
-      { icon: " ", hl_group: "none", color: "Normal" });
+    return fileIcons.get(extention);
   }
 }
 
@@ -148,6 +139,8 @@ const folderIcons: Record<"expand" | "collaps", IconData> = {
   expand: { icon: "", hl_group: "folder_expand", color: "Directory" },
   collaps: { icon: "", hl_group: "folder_collaps", color: "Directory" },
 };
+
+const specialIcons = new Map<string, IconData>([]);
 
 // deno-fmt-ignore-start
 const fileIcons = new Map<string, IconData>([                                  // nerd font class name
