@@ -30,18 +30,18 @@ export class Column extends BaseColumn<Params> {
     const widths = await Promise.all(
       args.items.map(async (item) => {
         const action = item?.action as ActionData;
-        const path = basename(action.path ?? item.word);
+        const filename = this.getFilename(
+          action.path ?? item.word,
+          action.isDirectory ?? false,
+        );
 
         const indent = item.__level;
         const iconWidth = await fn.strwidth(
           args.denops,
-          (this.getIcon(path) ?? args.columnParams.defaultIcon).icon,
+          (this.getIcon(filename) ?? args.columnParams.defaultIcon).icon,
         ) as number;
         const span = args.columnParams.span;
-        const itemLength = await fn.strwidth(
-          args.denops,
-          path,
-        ) as number + (action.isDirectory ? 1 : 0);
+        const itemLength = await fn.strwidth(args.denops, filename) as number;
 
         return indent + iconWidth + span + itemLength;
       }),
@@ -58,15 +58,18 @@ export class Column extends BaseColumn<Params> {
   }): Promise<GetTextResult> {
     const action = args.item?.action as ActionData;
     const highlights: ItemHighlight[] = [];
-    const file_name = basename(action.path ?? args.item.word) +
-      (action.isDirectory ? "/" : "");
+    const filename = this.getFilename(
+      action.path ?? args.item.word,
+      action.isDirectory ?? false,
+    );
 
-    const iconData = this.getIcon(file_name, args.item.__expanded) ?? args.columnParams.defaultIcon;
+    const iconData = this.getIcon(filename, args.item.__expanded) ??
+      args.columnParams.defaultIcon;
 
     // create text
     const indent = this.whitespace(args.item.__level);
     const span = this.whitespace(args.columnParams.span);
-    const body = indent + iconData.icon + span + file_name;
+    const body = indent + iconData.icon + span + filename;
     const bodyWidth = await fn.strwidth(args.denops, body) as number;
     const padding = this.whitespace(
       Math.max(0, args.endCol - args.startCol - bodyWidth),
@@ -88,10 +91,10 @@ export class Column extends BaseColumn<Params> {
       await args.denops.cmd(`hi default link ${hl_group} ${iconData.color}`);
     }
 
-    return Promise.resolve({
+    return {
       text: text,
       highlights: highlights,
-    });
+    };
   }
 
   public params(): Params {
@@ -101,8 +104,12 @@ export class Column extends BaseColumn<Params> {
     };
   }
 
-  private whitespace(count: number) {
+  private whitespace(count: number): string {
     return " ".repeat(Math.max(0, count));
+  }
+
+  private getFilename(path: string, isDirectory: boolean): string {
+    return basename(path) + (isDirectory ? "/" : "");
   }
 
   private getIcon(path: string, expanded = false): IconData | undefined {
