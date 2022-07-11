@@ -25,25 +25,32 @@ type ActionData = {
 type IconData = {
   icon: string;
   hl_group: string;
-  color?: string | null; // # + hex
+  color: string;
 };
 
 export class Column extends BaseColumn<Params> {
-  private definedHighlight = new Set<string>();
-
   public async getLength(
     args: { denops: Denops; columnParams: Params; items: DduItem[] },
   ): Promise<number> {
     const widths = await Promise.all(
       args.items.map(async (item) => {
+        const action = item?.action as ActionData;
+        const path = basename(action.path ?? item.word);
+
         const indent = item.__level;
+        const iconWidth = await fn.strwidth(
+          args.denops,
+          (action.isDirectory
+            ? this.getDirectoryIcon(item.__expanded)
+            : this.getFileIcon(path)).icon,
+        ) as number;
         const span = args.columnParams.span;
-        const iconWidth = await fn.strwidth(args.denops, "") as number;
         const itemLength = await fn.strwidth(
           args.denops,
-          item.display ?? item.word,
-        ) as number;
-        return indent + span + iconWidth + itemLength;
+          path,
+        ) as number + (action.isDirectory ? 1 : 0);
+
+        return indent + iconWidth + span + itemLength;
       }),
     );
     return Math.max(...widths);
@@ -75,7 +82,7 @@ export class Column extends BaseColumn<Params> {
     );
     const text = body + padding;
 
-    // set hilight
+    // set highlight
     const hl_group = `ddu_column_${iconData.hl_group}`;
     const iconWidth = await fn.strwidth(args.denops, iconData.icon) as number;
     highlights.push({
@@ -84,20 +91,10 @@ export class Column extends BaseColumn<Params> {
       col: args.startCol + args.item.__level + iconWidth + 1,
       width: iconWidth,
     });
-    if (this.definedHighlight.has(hl_group) == false) {
-      switch (iconData.color) {
-        case undefined:
-          await args.denops.cmd(`hi default link ${hl_group} Special`);
-          break;
-        case null:
-          break;
-        default:
-          await args.denops.cmd(
-            `hi default ${hl_group} guifg=${iconData.color}`,
-          );
-          break;
-      }
-      this.definedHighlight.add(hl_group);
+    if (iconData.color[0] == "#") {
+      await args.denops.cmd(`hi default ${hl_group} guifg=${iconData.color}`);
+    } else {
+      await args.denops.cmd(`hi default link ${hl_group} ${iconData.color}`);
     }
 
     return Promise.resolve({
@@ -123,7 +120,8 @@ export class Column extends BaseColumn<Params> {
 
   private getFileIcon(path: string): IconData {
     const extention = extname(path).substring(1);
-    return (fileIcons.get(extention) ?? { icon: " ", hl_group: "none" });
+    return (fileIcons.get(extention) ??
+      { icon: " ", hl_group: "none", color: "Normal" });
   }
 }
 
@@ -143,12 +141,12 @@ const colors = {
   salmon: "#EE6E73",
   green: "#8FAA54",
   lightGreen: "#31B53E",
-  default: null,
+  default: "Normal",
 } as const;
 
 const folderIcons: Record<"expand" | "collaps", IconData> = {
-  expand: { icon: "", hl_group: "folder_expand" },
-  collaps: { icon: "", hl_group: "folder_collaps" },
+  expand: { icon: "", hl_group: "folder_expand", color: "Directory" },
+  collaps: { icon: "", hl_group: "folder_collaps", color: "Directory" },
 };
 
 // deno-fmt-ignore-start
