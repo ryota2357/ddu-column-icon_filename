@@ -1,0 +1,58 @@
+*ddu-column-icons.txt*	Icon and filename column for ddu.vim
+
+Author  : ryota2357
+License : MIT license
+
+CONTENTS					*ddu-column-icons-contents*
+
+Introduction		|ddu-column-icons-introduction|
+Install			|ddu-column-icons-install|
+Examples		|ddu-column-icons-examples|
+Params			|ddu-column-icons-params|
+
+
+==============================================================================
+INTRODUCTION				*ddu-column-icons-introduction*
+
+This column displays icon and filename.
+
+
+==============================================================================
+INSTALL						*ddu-column-icons-install*
+
+Please install both "ddu.vim" and "denops.vim".
+
+https://github.com/Shougo/ddu.vim
+https://github.com/vim-denops/denops.vim
+
+
+==============================================================================
+EXAMPLES					*ddu-column-icons-examples*
+>
+	call ddu#custom#patch_global({
+	    \   'columns': ['icons'],
+	    \ })
+<
+
+==============================================================================
+PARAMS						*ddu-column-icons-params*
+
+				    *ddu-column-icons-param-span*
+span		(number)
+		The span between icon and filename.
+
+		Default: 1
+
+				    *ddu-column-icons-param-defaultIcon*
+defaultIcon	(dictionary)
+		It specifies default icon which is used when none of the
+		predefined icons apply.
+
+		Default: {
+		  "icon": " ",
+		  "hl_group": "file-default",
+		  "color": "Normal"
+		}
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:noet:fen:noet:
