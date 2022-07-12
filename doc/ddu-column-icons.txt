@@ -43,6 +43,12 @@ span		(number)
 
 		Default: 1
 
+				    *ddu-column-icons-param-padding*
+padding		(number)
+		The left padding in front of the icon.
+
+		Default: 1
+
 				    *ddu-column-icons-param-defaultIcon*
 defaultIcon	(dictionary)
 		It specifies default icon which is used when none of the

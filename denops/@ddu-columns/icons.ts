@@ -9,6 +9,7 @@ import { basename, extname } from "https://deno.land/std@0.147.0/path/mod.ts";
 
 type Params = {
   span: number;
+  padding: number;
   defaultIcon: IconData;
 };
 
@@ -35,7 +36,7 @@ export class Column extends BaseColumn<Params> {
           action.isDirectory ?? false,
         );
 
-        const indent = item.__level;
+        const indent = item.__level + args.columnParams.padding;
         const iconWidth = await fn.strwidth(
           args.denops,
           (this.getIcon(filename) ?? args.columnParams.defaultIcon).icon,
@@ -67,7 +68,9 @@ export class Column extends BaseColumn<Params> {
       args.columnParams.defaultIcon;
 
     // create text
-    const indent = this.whitespace(args.item.__level);
+    const indent = this.whitespace(
+      args.item.__level + args.columnParams.padding,
+    );
     const span = this.whitespace(args.columnParams.span);
     const body = indent + iconData.icon + span + filename;
     const bodyWidth = await fn.strwidth(args.denops, body) as number;
@@ -82,7 +85,8 @@ export class Column extends BaseColumn<Params> {
     highlights.push({
       name: "column-icons-icon",
       hl_group: hl_group,
-      col: args.startCol + args.item.__level + iconWidth + 1,
+      col: args.startCol + args.columnParams.padding + args.item.__level +
+        iconWidth + 1,
       width: iconWidth,
     });
     if (iconData.color[0] == "#") {
@@ -100,6 +104,7 @@ export class Column extends BaseColumn<Params> {
   public params(): Params {
     return {
       span: 1,
+      padding: 1,
       defaultIcon: { icon: " ", hl_group: "file-default", color: "Normal" },
     };
   }
