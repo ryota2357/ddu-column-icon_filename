@@ -105,7 +105,7 @@ export class Column extends BaseColumn<Params> {
     return {
       span: 1,
       padding: 1,
-      defaultIcon: { icon: " ", hl_group: "file-default", color: "Normal" },
+      defaultIcon: { icon: " ", hl_group: "file_default", color: "Normal" },
     };
   }
 
