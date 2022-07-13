@@ -157,6 +157,7 @@ const specialIcons = new Map<string, IconData>([
   [".ds_store", { icon: "", hl_group: "sp_ds_store", color: colors.default }],
   [".gitignore", { icon: "", hl_group: "sp_gitignore", color: colors.default }],
   [".gitconfig", { icon: "", hl_group: "sp_gitconfig", color: colors.default }],
+  [".git/", { icon: "", hl_group: "sp_git", color: "Directory" }],
   ["license", { icon: "", hl_group: "sp_license", color: colors.default }],
   ["license.md", { icon: "", hl_group: "sp_license", color: colors.default }],
   ["readme", { icon: "", hl_group: "sp_readme", color: colors.yellow }],
