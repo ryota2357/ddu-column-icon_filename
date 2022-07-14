@@ -1,4 +1,4 @@
-# ddu-column-icons
+# ddu-column-icon_filename
 
 Icon and filename column for ddu.vim
 
