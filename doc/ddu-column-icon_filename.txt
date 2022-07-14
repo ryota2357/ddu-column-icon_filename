@@ -1,24 +1,24 @@
-*ddu-column-icons.txt*	Icon and filename column for ddu.vim
+*ddu-column-icon_filename.txt*	Icon and filename column for ddu.vim
 
 Author  : ryota2357
 License : MIT license
 
-CONTENTS					*ddu-column-icons-contents*
+CONTENTS					*ddu-column-icon_filename-contents*
 
-Introduction		|ddu-column-icons-introduction|
-Install			|ddu-column-icons-install|
-Examples		|ddu-column-icons-examples|
-Params			|ddu-column-icons-params|
+Introduction		|ddu-column-icon_filename-introduction|
+Install			|ddu-column-icon_filename-install|
+Examples		|ddu-column-icon_filename-examples|
+Params			|ddu-column-icon_filename-params|
 
 
 ==============================================================================
-INTRODUCTION				*ddu-column-icons-introduction*
+INTRODUCTION				*ddu-column-icon_filename-introduction*
 
 This column displays icon and filename.
 
 
 ==============================================================================
-INSTALL						*ddu-column-icons-install*
+INSTALL						*ddu-column-icon_filename-install*
 
 Please install both "ddu.vim" and "denops.vim".
 
@@ -27,29 +27,29 @@ https://github.com/vim-denops/denops.vim
 
 
 ==============================================================================
-EXAMPLES					*ddu-column-icons-examples*
+EXAMPLES					*ddu-column-icon_filename-examples*
 >
 	call ddu#custom#patch_global({
-	    \   'columns': ['icons'],
+	    \   'columns': ['icon_filename'],
 	    \ })
 <
 
 ==============================================================================
-PARAMS						*ddu-column-icons-params*
+PARAMS						*ddu-column-icon_filename-params*
 
-				    *ddu-column-icons-param-span*
+				    *ddu-column-icon_filename-param-span*
 span		(number)
-		The span between icon and filename.
+		The space size between icon and filename.
 
 		Default: 1
 
-				    *ddu-column-icons-param-padding*
+				    *ddu-column-icon_filename-param-padding*
 padding		(number)
-		The left padding in front of the icon.
+		The left space size in front of the icon.
 
 		Default: 1
 
-				    *ddu-column-icons-param-defaultIcon*
+				    *ddu-column-icon_filename-param-defaultIcon*
 defaultIcon	(dictionary)
 		It specifies default icon which is used when none of the
 		predefined icons apply.
