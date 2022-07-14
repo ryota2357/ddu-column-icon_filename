@@ -186,8 +186,11 @@ const specialIcons = new Map<string, IconData>([
 
 // deno-fmt-ignore-start
 const fileIcons = new Map<string, IconData>([                                  // nerd font class name
+  ["ai",     { icon: "", hl_group: "file_ai",     color: colors.darkOrange  }], // nf-dev-illustrator
   ["awk",    { icon: "", hl_group: "file_awk",    color: colors.default     }], // nf-dev-terminal
   ["bash",   { icon: "", hl_group: "file_bash",   color: colors.default     }], // nf-dev-terminal
+  ["bat",    { icon: "", hl_group: "file_bat",    color: colors.default     }], // nf-dev-aptana
+  ["bmp",    { icon: "", hl_group: "file_bmp",    color: colors.aqua        }], // nf-fa-file_image_o
   ["c",      { icon: "", hl_group: "file_c",      color: colors.blue        }], // nf-custom-c
   ["coffee", { icon: "", hl_group: "file_coffee", color: colors.brown       }], // nf-dev-coffeescript
   ["conf",   { icon: "", hl_group: "file_conf",   color: colors.default     }], // nf-dev-aptana
@@ -204,6 +207,7 @@ const fileIcons = new Map<string, IconData>([                                  /
   ["go",     { icon: "", hl_group: "file_go",     color: colors.beige       }], // nf-dev-go
   ["hs",     { icon: "", hl_group: "file_hs",     color: colors.beige       }], // nf-dev-haskell
   ["html",   { icon: "", hl_group: "file_html",   color: colors.darkOrange  }], // nf-dev-html5
+  ["ico",    { icon: "", hl_group: "file_ico",    color: colors.aqua        }], // nf-fa-file_image_o
   ["java",   { icon: "", hl_group: "file_java",   color: colors.purple      }], // nf-dev-java
   ["jpg",    { icon: "", hl_group: "file_jpg",    color: colors.aqua        }], // nf-fa-file_image_o
   ["jpeg",   { icon: "", hl_group: "file_jpeg",   color: colors.aqua        }], // nf-fa-file_image_o
@@ -218,6 +222,7 @@ const fileIcons = new Map<string, IconData>([                                  /
   ["pdf",    { icon: "", hl_group: "file_pdf",    color: colors.darkOrange  }], // nf-oct-file_pdf
   ["php",    { icon: "", hl_group: "file_php",    color: colors.purple      }], // nf-dev-php
   ["png",    { icon: "", hl_group: "file_png",    color: colors.aqua        }], // nf-fa-file_image_o
+  ["psd",    { icon: "", hl_group: "file_psd",    color: colors.darkBlue    }], // nf-dev-photoshop
   ["py",     { icon: "", hl_group: "file_py",     color: colors.yellow      }], // nf-dev-python
   ["rb",     { icon: "", hl_group: "file_rb",     color: colors.red         }], // nf-dev-ruby
   ["rs",     { icon: "", hl_group: "file_rs",     color: colors.red         }], // nf-dev-rust
@@ -234,7 +239,8 @@ const fileIcons = new Map<string, IconData>([                                  /
   ["vim",    { icon: "", hl_group: "file_vim",    color: colors.green       }], // nf-dev-vim
   ["vue",    { icon: "﵂", hl_group: "file_vue",    color: colors.green       }], // nf-mdi-vuejs
   ["webp",   { icon: "", hl_group: "file_webp",   color: colors.aqua        }], // nf-fa-file_image_o
-  ["zsh",    { icon: "", hl_group: "file_zip",    color: colors.default     }], // nf-dev-terminal
+  ["yaml",   { icon: "", hl_group: "file_yaml",   color: colors.default     }], // nf-dev-aptana
+  ["zip",    { icon: "", hl_group: "file_zip",    color: colors.default     }], // nf-oct-file_zip
   ["zsh",    { icon: "", hl_group: "file_zsh",    color: colors.default     }], // nf-dev-terminal
 ]);
 // deno-fmt-ignore-end
