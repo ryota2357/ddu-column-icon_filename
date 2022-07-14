@@ -10,12 +10,17 @@ import { basename, extname } from "https://deno.land/std@0.147.0/path/mod.ts";
 type Params = {
   span: number;
   padding: number;
-  defaultIcon: IconData;
+  defaultIcon: DefautIcon;
 };
 
 type ActionData = {
   isDirectory?: boolean;
   path?: string;
+};
+
+type DefautIcon = {
+  icon?: string;
+  color?: string;
 };
 
 type IconData = {
@@ -65,7 +70,7 @@ export class Column extends BaseColumn<Params> {
     );
 
     const iconData = this.getIcon(filename, args.item.__expanded) ??
-      args.columnParams.defaultIcon;
+      this.formatDefaultIcon(args.columnParams.defaultIcon);
 
     // create text
     const indent = this.whitespace(
@@ -105,7 +110,7 @@ export class Column extends BaseColumn<Params> {
     return {
       span: 1,
       padding: 1,
-      defaultIcon: { icon: " ", hl_group: "file_default", color: "Normal" },
+      defaultIcon: { icon: " ", color: "Normal" },
     };
   }
 
@@ -115,6 +120,16 @@ export class Column extends BaseColumn<Params> {
 
   private getFilename(path: string, isDirectory: boolean): string {
     return basename(path) + (isDirectory ? "/" : "");
+  }
+
+  private formatDefaultIcon(data: DefautIcon): IconData {
+    const icon = data.icon ?? " ";
+    const color = data.color ?? "Normal";
+    return {
+      icon: icon,
+      hl_group: "file_default",
+      color: color,
+    };
   }
 
   private getIcon(fname: string, expanded = false): IconData | undefined {
