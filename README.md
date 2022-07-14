@@ -16,6 +16,6 @@ https://github.com/Shougo/ddu.vim
 
 ```vim
 call ddu#custom#patch_global({
-    \   'columns': ['icons'],
+    \   'columns': ['icon_filename'],
     \ })
 ```
