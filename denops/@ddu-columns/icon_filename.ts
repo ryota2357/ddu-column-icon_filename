@@ -168,24 +168,24 @@ const folderIcons: Record<"expand" | "collaps", IconData> = {
 };
 
 // deno-fmt-ignore-start
-const specialIcons = new Map<string, IconData>([
-  [".ds_store", { icon: "", hl_group: "sp_ds_store", color: colors.default }],
-  [".gitignore", { icon: "", hl_group: "sp_gitignore", color: colors.default }],
-  [".gitconfig", { icon: "", hl_group: "sp_gitconfig", color: colors.default }],
-  [".git/", { icon: "", hl_group: "sp_git", color: "Directory" }],
-  ["license", { icon: "", hl_group: "sp_license", color: colors.default }],
-  ["license.md", { icon: "", hl_group: "sp_license", color: colors.default }],
-  ["readme", { icon: "", hl_group: "sp_readme", color: colors.yellow }],
-  ["readme.md", { icon: "", hl_group: "sp_readme", color: colors.yellow }],
-  [".github/", { icon: "", hl_group: "sp_github", color: "Directory" }],
-  ["node_modules/", { icon: "", hl_group: "sp_node_module", color: "Directory" }],
-  ["dockerfile", { icon: "", hl_group: "sp_license", color: colors.blue }],
-  ["makefile", { icon: "", hl_group: "sp_gitconfig", color: colors.default }],
+const specialIcons = new Map<string, IconData>([                                       // nerd font class name
+  [".ds_store",     { icon: "", hl_group: "sp_ds_store",    color: colors.default }], // nf-dev-aptana
+  [".gitignore",    { icon: "", hl_group: "sp_gitignore",   color: colors.default }], // nf-dev-aptana
+  [".gitconfig",    { icon: "", hl_group: "sp_gitconfig",   color: colors.default }], // nf-dev-aptana
+  ["dockerfile",    { icon: "", hl_group: "sp_license",     color: colors.blue    }], // nf-dev-docker
+  ["makefile",      { icon: "", hl_group: "sp_gitconfig",   color: colors.default }], // nf-dev-aptana
+  ["license",       { icon: "", hl_group: "sp_license",     color: colors.default }], // nf-seti-license
+  ["license.txt",   { icon: "", hl_group: "sp_license",     color: colors.default }], // nf-seti-license
+  ["readme",        { icon: "", hl_group: "sp_readme",      color: colors.yellow  }], // nf-seti-markdown
+  ["readme.md",     { icon: "", hl_group: "sp_readme",      color: colors.yellow  }], // nf-seti-markdown
+  [".git/",         { icon: "", hl_group: "sp_git",         color: "Directory"    }], // nf-custom-folder_git
+  [".github/",      { icon: "", hl_group: "sp_github",      color: "Directory"    }], // nf-custom-folder_github
+  ["node_modules/", { icon: "", hl_group: "sp_node_module", color: "Directory"    }], // nf-mdi-nodejs
 ]);
 // deno-fmt-ignore-end
 
 // deno-fmt-ignore-start
-const fileIcons = new Map<string, IconData>([                                  // nerd font class name
+const fileIcons = new Map<string, IconData>([                                    // nerd font class name
   ["ai",     { icon: "", hl_group: "file_ai",     color: colors.darkOrange  }], // nf-dev-illustrator
   ["awk",    { icon: "", hl_group: "file_awk",    color: colors.default     }], // nf-dev-terminal
   ["bash",   { icon: "", hl_group: "file_bash",   color: colors.default     }], // nf-dev-terminal
