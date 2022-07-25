@@ -5,7 +5,7 @@ import {
 } from "https://deno.land/x/ddu_vim@v1.8.7/types.ts";
 import { GetTextResult } from "https://deno.land/x/ddu_vim@v1.8.7/base/column.ts";
 import { Denops, fn } from "https://deno.land/x/ddu_vim@v1.8.7/deps.ts";
-import { basename, extname } from "https://deno.land/std@0.147.0/path/mod.ts";
+import { basename, extname } from "https://deno.land/std@0.149.0/path/mod.ts";
 
 type Params = {
   span: number;
