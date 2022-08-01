@@ -49,6 +49,12 @@ padding		(number)
 
 		Default: 1
 
+				    *ddu-column-icon_filename-param-iconWidth*
+iconWidth	(number)
+		The size of icon.
+
+		Default: 1
+
 				    *ddu-column-icon_filename-param-defaultIcon*
 defaultIcon	(dictionary)
 		It specifies default icon which is used when none of the

@@ -2,14 +2,15 @@ import {
   BaseColumn,
   DduItem,
   ItemHighlight,
-} from "https://deno.land/x/ddu_vim@v1.8.7/types.ts";
-import { GetTextResult } from "https://deno.land/x/ddu_vim@v1.8.7/base/column.ts";
-import { Denops, fn } from "https://deno.land/x/ddu_vim@v1.8.7/deps.ts";
-import { basename, extname } from "https://deno.land/std@0.149.0/path/mod.ts";
+} from "https://deno.land/x/ddu_vim@v1.8.8/types.ts";
+import { GetTextResult } from "https://deno.land/x/ddu_vim@v1.8.8/base/column.ts";
+import { Denops, fn } from "https://deno.land/x/ddu_vim@v1.8.8/deps.ts";
+import { basename, extname } from "https://deno.land/std@0.150.0/path/mod.ts";
 
 type Params = {
   span: number;
   padding: number;
+  iconWidth: number;
   defaultIcon: DefautIcon;
 };
 
@@ -42,10 +43,7 @@ export class Column extends BaseColumn<Params> {
         );
 
         const indent = item.__level + args.columnParams.padding;
-        const iconWidth = await fn.strwidth(
-          args.denops,
-          (this.getIcon(filename) ?? args.columnParams.defaultIcon).icon,
-        ) as number;
+        const iconWidth = args.columnParams.iconWidth;
         const span = args.columnParams.span;
         const itemLength = await fn.strwidth(args.denops, filename) as number;
 
@@ -110,6 +108,7 @@ export class Column extends BaseColumn<Params> {
     return {
       span: 1,
       padding: 1,
+      iconWidth: 1,
       defaultIcon: { icon: " ", color: "Normal" },
     };
   }
