@@ -5,7 +5,7 @@ import {
 } from "https://deno.land/x/ddu_vim@v1.8.8/types.ts";
 import { GetTextResult } from "https://deno.land/x/ddu_vim@v1.8.8/base/column.ts";
 import { Denops, fn } from "https://deno.land/x/ddu_vim@v1.8.8/deps.ts";
-import { basename, extname } from "https://deno.land/std@0.150.0/path/mod.ts";
+import { basename, extname } from "https://deno.land/std@0.151.0/path/mod.ts";
 
 type Params = {
   span: number;
@@ -167,24 +167,26 @@ const folderIcons: Record<"expand" | "collaps", IconData> = {
 };
 
 // deno-fmt-ignore-start
-const specialIcons = new Map<string, IconData>([                                       // nerd font class name
-  [".ds_store",          { icon: "", hl_group: "sp_ds_store",    color: colors.default }], // nf-dev-aptana
-  [".gitignore",         { icon: "", hl_group: "sp_gitignore",   color: colors.default }], // nf-dev-aptana
-  [".gitconfig",         { icon: "", hl_group: "sp_gitconfig",   color: colors.default }], // nf-dev-aptana
-  [".gitlab-ci.yml",     { icon: "", hl_group: "sp_gitlab_ci",   color: colors.default }], // nf-fa-gitlab
-  ["config.ru",          { icon: "", hl_group: "sp_config_ru",   color: colors.default }], // nf-dev-ruby
-  ["dockerfile",         { icon: "", hl_group: "sp_license",     color: colors.blue    }], // nf-dev-docker
-  ["docker-compose.yml", { icon: "", hl_group: "sp_license",     color: colors.yellow  }], // nf-dev-docker
-  ["favicon.ico",        { icon: "", hl_group: "sp_favicon",     color: colors.yellow  }], // nf-seti-favicon
-  ["makefile",           { icon: "", hl_group: "sp_gitconfig",   color: colors.default }], // nf-dev-aptana
-  ["license",            { icon: "", hl_group: "sp_license",     color: colors.default }], // nf-seti-license
-  ["license.txt",        { icon: "", hl_group: "sp_license",     color: colors.default }], // nf-seti-license
-  ["readme",             { icon: "", hl_group: "sp_readme",      color: colors.yellow  }], // nf-seti-markdown
-  ["readme.md",          { icon: "", hl_group: "sp_readme",      color: colors.yellow  }], // nf-seti-markdown
-  [".git/",              { icon: "", hl_group: "sp_git",         color: "Directory"    }], // nf-custom-folder_git
-  [".github/",           { icon: "", hl_group: "sp_github",      color: "Directory"    }], // nf-custom-folder_github
-  ["dropbox/",           { icon: "", hl_group: "sp_dropbox",     color: "Directory"    }], // nf-dev-dropbox
-  ["node_modules/",      { icon: "", hl_group: "sp_node_module", color: "Directory"    }], // nf-mdi-nodejs
+const specialIcons = new Map<string, IconData>([                                               // nerd font class name
+  [".ds_store",          { icon: "", hl_group: "sp_ds_store",    color: colors.default    }], // nf-dev-aptana
+  [".gitignore",         { icon: "", hl_group: "sp_gitignore",   color: colors.darkOrange }], // nf-dev-git
+  [".gitconfig",         { icon: "", hl_group: "sp_gitconfig",   color: colors.default    }], // nf-dev-aptana
+  [".gitlab-ci.yml",     { icon: "", hl_group: "sp_gitlab_ci",   color: colors.default    }], // nf-fa-gitlab
+  ["config.ru",          { icon: "", hl_group: "sp_config_ru",   color: colors.default    }], // nf-dev-ruby
+  ["dockerfile",         { icon: "", hl_group: "sp_license",     color: colors.blue       }], // nf-dev-docker
+  ["docker-compose.yml", { icon: "", hl_group: "sp_license",     color: colors.yellow     }], // nf-dev-docker
+  ["favicon.ico",        { icon: "", hl_group: "sp_favicon",     color: colors.yellow     }], // nf-seti-favicon
+  ["makefile",           { icon: "", hl_group: "sp_gitconfig",   color: colors.default    }], // nf-dev-aptana
+  ["license",            { icon: "", hl_group: "sp_license",     color: colors.default    }], // nf-seti-license
+  ["license.txt",        { icon: "", hl_group: "sp_license",     color: colors.default    }], // nf-seti-license
+  ["readme",             { icon: "", hl_group: "sp_readme",      color: colors.yellow     }], // nf-seti-markdown
+  ["readme.md",          { icon: "", hl_group: "sp_readme",      color: colors.yellow     }], // nf-seti-markdown
+  ["changelog",          { icon: "", hl_group: "sp_changelog",   color: colors.green      }], // nf-fa-history
+  ["changelog.md",       { icon: "", hl_group: "sp_changelog",   color: colors.green      }], // nf-fa-history
+  [".git/",              { icon: "", hl_group: "sp_git",         color: "Directory"       }], // nf-custom-folder_git
+  [".github/",           { icon: "", hl_group: "sp_github",      color: "Directory"       }], // nf-custom-folder_github
+  ["dropbox/",           { icon: "", hl_group: "sp_dropbox",     color: "Directory"       }], // nf-dev-dropbox
+  ["node_modules/",      { icon: "", hl_group: "sp_node_module", color: "Directory"       }], // nf-mdi-nodejs
 ]);
 // deno-fmt-ignore-end
 
@@ -193,7 +195,7 @@ const fileIcons = new Map<string, IconData>([                                   
   ["ai",     { icon: "", hl_group: "file_ai",     color: colors.darkOrange  }], // nf-dev-illustrator
   ["awk",    { icon: "", hl_group: "file_awk",    color: colors.default     }], // nf-dev-terminal
   ["bash",   { icon: "", hl_group: "file_bash",   color: colors.default     }], // nf-dev-terminal
-  ["bat",    { icon: "", hl_group: "file_bat",    color: colors.default     }], // nf-dev-aptana
+  ["bat",    { icon: "", hl_group: "file_bat",    color: colors.default     }], // nf-dev-aptana
   ["bmp",    { icon: "", hl_group: "file_bmp",    color: colors.aqua        }], // nf-fa-file_image_o
   ["c",      { icon: "", hl_group: "file_c",      color: colors.blue        }], // nf-custom-c
   ["clj",    { icon: "", hl_group: "file_clj",    color: colors.green       }], // nf-dev-clojure
@@ -230,7 +232,7 @@ const fileIcons = new Map<string, IconData>([                                   
   ["js",     { icon: "", hl_group: "file_js",     color: colors.beige       }], // nf-dev-javascript
   ["jsx",    { icon: "", hl_group: "file_jsx",    color: colors.blue        }], // nf-dev-react
   ["json",   { icon: "", hl_group: "file_json",   color: colors.beige       }], // nf-seti-json
-  ["lock",   { icon: "", hl_group: "file_lock",   color: colors.default     }], // nf-fa-lock
+  ["lock",   { icon: "", hl_group: "file_lock",   color: colors.beige       }], // nf-fa-lock
   ["lua",    { icon: "", hl_group: "file_lua",    color: colors.purple      }], // nf-seti-lua
   ["md",     { icon: "", hl_group: "file_md",     color: colors.blue        }], // nf-dev-markdown
   ["mdx",    { icon: "", hl_group: "file_mdx",    color: colors.blue        }], // nf-dev-markdown
@@ -267,8 +269,8 @@ const fileIcons = new Map<string, IconData>([                                   
   ["webp",   { icon: "", hl_group: "file_webp",   color: colors.aqua        }], // nf-fa-file_image_o
   ["xls",    { icon: "", hl_group: "file_xls",    color: colors.lightGreen  }], // nf-fa-file_excel_o
   ["xlsx",   { icon: "", hl_group: "file_xlsx",   color: colors.lightGreen  }], // nf-fa-file_excel_o
-  ["yaml",   { icon: "", hl_group: "file_yaml",   color: colors.default     }], // nf-dev-aptana
-  ["yml",    { icon: "", hl_group: "file_yml",    color: colors.default     }], // nf-dev-aptana
+  ["yaml",   { icon: "", hl_group: "file_yaml",   color: colors.default     }], // nf-dev-aptana
+  ["yml",    { icon: "", hl_group: "file_yml",    color: colors.default     }], // nf-dev-aptana
   ["zip",    { icon: "", hl_group: "file_zip",    color: colors.default     }], // nf-oct-file_zip
   ["zsh",    { icon: "", hl_group: "file_zsh",    color: colors.default     }], // nf-dev-terminal
 ]);
