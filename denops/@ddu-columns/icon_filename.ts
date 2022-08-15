@@ -220,6 +220,7 @@ const fileIcons = new Map<string, IconData>([                                   
   ["fsx",    { icon: "", hl_group: "file_fsx",    color: colors.blue        }], // nf-dev-fsharp
   ["gif",    { icon: "", hl_group: "file_gif",    color: colors.aqua        }], // nf-fa-file_image_o
   ["go",     { icon: "", hl_group: "file_go",     color: colors.beige       }], // nf-dev-go
+  ["gz",     { icon: "", hl_group: "file_gz",     color: colors.default     }], // nf-oct-file_zip
   ["h",      { icon: "", hl_group: "file_h",      color: colors.default     }], // nf-fa-h_square
   ["hpp",    { icon: "", hl_group: "file_hpp",    color: colors.default     }], // nf-fa-h_square
   ["hs",     { icon: "", hl_group: "file_hs",     color: colors.beige       }], // nf-dev-haskell
@@ -233,6 +234,7 @@ const fileIcons = new Map<string, IconData>([                                   
   ["jsx",    { icon: "", hl_group: "file_jsx",    color: colors.blue        }], // nf-dev-react
   ["json",   { icon: "", hl_group: "file_json",   color: colors.beige       }], // nf-seti-json
   ["lock",   { icon: "", hl_group: "file_lock",   color: colors.beige       }], // nf-fa-lock
+  ["log",    { icon: "", hl_group: "file_log",    color: colors.yellow      }], // nf-oct-file
   ["lua",    { icon: "", hl_group: "file_lua",    color: colors.purple      }], // nf-seti-lua
   ["md",     { icon: "", hl_group: "file_md",     color: colors.blue        }], // nf-dev-markdown
   ["mdx",    { icon: "", hl_group: "file_mdx",    color: colors.blue        }], // nf-dev-markdown
