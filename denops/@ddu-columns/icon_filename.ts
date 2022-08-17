@@ -5,6 +5,7 @@ import {
 } from "https://deno.land/x/ddu_vim@v1.8.8/types.ts";
 import { GetTextResult } from "https://deno.land/x/ddu_vim@v1.8.8/base/column.ts";
 import { Denops, fn } from "https://deno.land/x/ddu_vim@v1.8.8/deps.ts";
+import { ambiwidth } from "https://deno.land/x/denops_std@v3.8.1/option/mod.ts";
 import { basename, extname } from "https://deno.land/std@0.152.0/path/mod.ts";
 
 type Params = {
@@ -89,7 +90,7 @@ export class Column extends BaseColumn<Params> {
       name: "column-icons-icon",
       hl_group: hl_group,
       col: args.startCol + args.columnParams.padding + args.item.__level +
-        iconWidth + 1,
+        iconWidth + (await ambiwidth.get(args.denops) == "single" ? 1 : 0),
       width: iconWidth,
     });
     if (iconData.color[0] == "#") {
