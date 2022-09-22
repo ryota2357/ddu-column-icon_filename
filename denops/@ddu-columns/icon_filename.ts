@@ -13,14 +13,21 @@ type Params = {
   padding: number;
   iconWidth: number;
   defaultIcon: DefautIcon;
+  linkIcon: linkIcons;
 };
 
 type ActionData = {
   isDirectory?: boolean;
+  isLink?: boolean;
   path?: string;
 };
 
 type DefautIcon = {
+  icon?: string;
+  color?: string;
+};
+
+type linkIcons = {
   icon?: string;
   color?: string;
 };
@@ -68,8 +75,12 @@ export class Column extends BaseColumn<Params> {
       action.isDirectory ?? false,
     );
 
-    const iconData = this.getIcon(filename, args.item.__expanded) ??
-      this.formatDefaultIcon(args.columnParams.defaultIcon);
+    const iconData = this.getIcon(
+      filename,
+      args.item.__expanded,
+      action.isLink ?? false,
+      args.columnParams,
+    ) ?? this.formatDefaultIcon(args.columnParams.defaultIcon);
 
     // create text
     const indent = this.whitespace(
@@ -111,6 +122,7 @@ export class Column extends BaseColumn<Params> {
       padding: 1,
       iconWidth: 1,
       defaultIcon: { icon: " ", color: "Normal" },
+      linkIcon: { icon: "", color: "Comment" },
     };
   }
 
@@ -132,10 +144,28 @@ export class Column extends BaseColumn<Params> {
     };
   }
 
-  private getIcon(fname: string, expanded = false): IconData | undefined {
+  private getIcon(
+    fname: string,
+    expanded: boolean,
+    isLink: boolean,
+    params: Params,
+  ): IconData | undefined {
+    const isDirectory = fname[fname.length - 1] == "/";
+
+    if (isLink) {
+      const icon = params.linkIcon.icon ?? "";
+      const color = params.linkIcon.color ?? "Comment";
+      return {
+        icon: icon,
+        hl_group: "link",
+        color: color,
+      };
+    }
+
     const sp = specialIcons.get(fname.toLowerCase());
     if (sp) return sp;
-    if (fname[fname.length - 1] == "/") {
+
+    if (isDirectory) {
       return expanded ? folderIcons.expand : folderIcons.collaps;
     }
     const extention = extname(fname).substring(1);
