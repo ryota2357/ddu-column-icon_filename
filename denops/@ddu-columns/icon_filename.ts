@@ -14,6 +14,7 @@ type Params = {
   iconWidth: number;
   defaultIcon: DefautIcon;
   linkIcon: linkIcons;
+  useLinkIcon: "always" | "default" | "none";
 };
 
 type ActionData = {
@@ -123,6 +124,7 @@ export class Column extends BaseColumn<Params> {
       iconWidth: 1,
       defaultIcon: { icon: " ", color: "Normal" },
       linkIcon: { icon: "", color: "Comment" },
+      useLinkIcon: "always",
     };
   }
 
@@ -142,7 +144,7 @@ export class Column extends BaseColumn<Params> {
   ): IconData {
     const isDirectory = fname[fname.length - 1] == "/";
 
-    if (isLink) {
+    const linkIcon = (() => {
       const icon = params.linkIcon.icon ?? "";
       const color = params.linkIcon.color ?? "Comment";
       return {
@@ -150,7 +152,8 @@ export class Column extends BaseColumn<Params> {
         hl_group: "link",
         color: color,
       };
-    }
+    })();
+    if (isLink && params.useLinkIcon == "always") return linkIcon;
 
     const sp = specialIcons.get(fname.toLowerCase());
     if (sp) return sp;
@@ -162,6 +165,8 @@ export class Column extends BaseColumn<Params> {
     const extention = extname(fname).substring(1);
     const file = fileIcons.get(extention);
     if (file) return file;
+
+    if (isLink && params.useLinkIcon == "default") return linkIcon;
 
     const defoIcon = params.defaultIcon.icon ?? " ";
     const defoColor = params.defaultIcon.color ?? "Normal";
