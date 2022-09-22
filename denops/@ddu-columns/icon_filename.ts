@@ -80,7 +80,7 @@ export class Column extends BaseColumn<Params> {
       args.item.__expanded,
       action.isLink ?? false,
       args.columnParams,
-    ) ?? this.formatDefaultIcon(args.columnParams.defaultIcon);
+    );
 
     // create text
     const indent = this.whitespace(
@@ -134,22 +134,12 @@ export class Column extends BaseColumn<Params> {
     return basename(path) + (isDirectory ? "/" : "");
   }
 
-  private formatDefaultIcon(data: DefautIcon): IconData {
-    const icon = data.icon ?? " ";
-    const color = data.color ?? "Normal";
-    return {
-      icon: icon,
-      hl_group: "file_default",
-      color: color,
-    };
-  }
-
   private getIcon(
     fname: string,
     expanded: boolean,
     isLink: boolean,
     params: Params,
-  ): IconData | undefined {
+  ): IconData {
     const isDirectory = fname[fname.length - 1] == "/";
 
     if (isLink) {
@@ -168,8 +158,18 @@ export class Column extends BaseColumn<Params> {
     if (isDirectory) {
       return expanded ? folderIcons.expand : folderIcons.collaps;
     }
+
     const extention = extname(fname).substring(1);
-    return fileIcons.get(extention);
+    const file = fileIcons.get(extention);
+    if (file) return file;
+
+    const defoIcon = params.defaultIcon.icon ?? " ";
+    const defoColor = params.defaultIcon.color ?? "Normal";
+    return {
+      icon: defoIcon,
+      hl_group: "file_default",
+      color: defoColor,
+    };
   }
 }
 
