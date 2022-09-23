@@ -14,7 +14,7 @@ type Params = {
   iconWidth: number;
   defaultIcon: DefautIcon;
   linkIcon: linkIcons;
-  useLinkIcon: "always" | "default" | "none";
+  useLinkIcon: "always" | "grayout" | "default" | "none";
 };
 
 type ActionData = {
@@ -123,7 +123,7 @@ export class Column extends BaseColumn<Params> {
       padding: 1,
       iconWidth: 1,
       defaultIcon: { icon: " ", color: "Normal" },
-      linkIcon: { icon: "", color: "Comment" },
+      linkIcon: { icon: "", color: "#808080" },
       useLinkIcon: "always",
     };
   }
@@ -146,7 +146,7 @@ export class Column extends BaseColumn<Params> {
 
     const linkIcon = (() => {
       const icon = params.linkIcon.icon ?? "";
-      const color = params.linkIcon.color ?? "Comment";
+      const color = params.linkIcon.color ?? "#808080";
       return {
         icon: icon,
         hl_group: "link",
@@ -156,7 +156,13 @@ export class Column extends BaseColumn<Params> {
     if (isLink && params.useLinkIcon == "always") return linkIcon;
 
     const sp = specialIcons.get(fname.toLowerCase());
-    if (sp) return sp;
+    if (sp) {
+      if (isLink && params.useLinkIcon == "grayout") {
+        sp.hl_group = linkIcon.hl_group;
+        sp.color = linkIcon.color;
+      }
+      return sp;
+    }
 
     if (isDirectory) {
       return expanded ? folderIcons.expand : folderIcons.collaps;
@@ -164,9 +170,15 @@ export class Column extends BaseColumn<Params> {
 
     const extention = extname(fname).substring(1);
     const file = fileIcons.get(extention);
-    if (file) return file;
+    if (file) {
+      if (isLink && params.useLinkIcon == "grayout") {
+        file.hl_group = linkIcon.hl_group;
+        file.color = linkIcon.color;
+      }
+      return file;
+    }
 
-    if (isLink && params.useLinkIcon == "default") return linkIcon;
+    if (isLink && params.useLinkIcon != "none") return linkIcon;
 
     const defoIcon = params.defaultIcon.icon ?? " ";
     const defoColor = params.defaultIcon.color ?? "Normal";

@@ -72,8 +72,7 @@ defaultIcon	(dictionary)
 
 				    *ddu-column-icon_filename-param-linkIcon*
 linkIcon	(dictionary | boolean)
-		It specifies link icon. If you want to disable this feature,
-		you can set it to v:false.
+		It specifies link icon.
 		It can contain following keys.
 
 		icon			(string)
@@ -83,13 +82,14 @@ linkIcon	(dictionary | boolean)
 		color			(string)
 		Specify default icon highlight.
 		If it start with #, it is interpreted as a hex color code.
-		Default: "Comment"
+		Default: "#808080"
 
 				    *ddu-column-icon_filename-param-useLinkIcon*
 useLinkIcon	(string)
 		Specify linkIcon display conditions.
 
 		"always"	Always show linkIcon.
+		"grayout"	Grayout icon color.
 		"default"	When none of the predefined icons found, use
 				linkIcon instead of defaultIcon.
 		"none"		Not use linkIcon.
