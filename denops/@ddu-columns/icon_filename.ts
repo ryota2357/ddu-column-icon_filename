@@ -310,6 +310,7 @@ const fileIcons = new Map<string, IconData>([                                   
   ["sln",    { icon: "", hl_group: "file_sln",    color: colors.purple      }], // nf-dev-visualstudio
   ["styl",   { icon: "", hl_group: "file_styl",   color: colors.green       }], // nf-dev-stylus
   ["swift",  { icon: "", hl_group: "file_swift",  color: colors.orange      }], // nf-dev-swift
+  ["tex",    { icon: "", hl_group: "file_tex",    color: colors.default     }], // nf-mdi-text_shadow
   ["toml",   { icon: "", hl_group: "file_toml",   color: colors.default     }], // nf-dev-aptana
   ["ts",     { icon: "", hl_group: "file_ts",     color: colors.blue        }], // nf-seti-typescript
   ["tsx",    { icon: "", hl_group: "file_tsx",    color: colors.blue        }], // nf-dev-react
