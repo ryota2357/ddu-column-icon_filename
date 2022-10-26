@@ -353,6 +353,7 @@ const specialIcons = new Map<string, IconData>([                                
   [".gitlab-ci.yml",      { icon: "", hl_group: "sp_gitlab_ci",     color: palette.default    }], // nf-fa-gitlab
   [".vimrc",              { icon: '', hl_group: "sp_vimrc",         color: palette.green      }], // nf-dev-vim
   [".vscode",             { icon: "", hl_group: "sp_vscode",        color: "Directory"        }], // nf-dev-visualstudio
+  [".zshrc",              { icon: "", hl_group: "sp_zshrc",         color: palette.default    }], // nf-dev-terminal
   ["changelog",           { icon: "", hl_group: "sp_changelog",     color: palette.green      }], // nf-fa-history
   ["changelog.md",        { icon: "", hl_group: "sp_changelog",     color: palette.green      }], // nf-fa-history
   ["config.ru",           { icon: "", hl_group: "sp_config_ru",     color: palette.default    }], // nf-dev-ruby
