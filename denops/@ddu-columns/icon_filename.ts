@@ -339,6 +339,7 @@ const folderIcons: Record<"expand" | "collaps", IconData> = {
 
 // deno-fmt-ignore-start
 const specialIcons = new Map<string, IconData>([                                                   // nerd font class name
+  [".bashrc",             { icon: "", hl_group: "sp_bashrc",        color: palette.default    }], // nf-dev-terminal
   [".ds_store",           { icon: "", hl_group: "sp_ds_store",      color: palette.default    }], // nf-dev-aptana
   [".editorconfig",       { icon: "", hl_group: "sp_editorconfig",  color: palette.default    }], // nf-dev-aptana
   [".eslintrc.js",        { icon: "", hl_group: "sp_eslintrc",      color: palette.purple     }], // nf-seti-eslint
