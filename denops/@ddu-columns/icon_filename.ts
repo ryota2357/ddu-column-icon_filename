@@ -2,6 +2,7 @@ import {
   BaseColumn,
   DduItem,
   ItemHighlight,
+  OnInitArguments,
 } from "https://deno.land/x/ddu_vim@v1.11.0/types.ts";
 import { GetTextResult } from "https://deno.land/x/ddu_vim@v1.11.0/base/column.ts";
 import { Denops, fn } from "https://deno.land/x/ddu_vim@v1.11.0/deps.ts";
@@ -15,6 +16,8 @@ type Params = {
   defaultIcon: DefautIcon;
   linkIcon: linkIcons;
   useLinkIcon: "always" | "grayout" | "default" | "none";
+  customSpecialIcons: Record<string, IconData>;
+  customFileIcons: Record<string, IconData>;
 };
 
 type ActionData = {
@@ -40,6 +43,24 @@ type IconData = {
 };
 
 export class Column extends BaseColumn<Params> {
+  specialIcons: Map<string, IconData> = specialIcons;
+  fileIcons: Map<string, IconData> = fileIcons;
+
+  public onInit(args: OnInitArguments<Params>): void {
+    if (args.columnParams.customSpecialIcons) {
+      this.specialIcons = new Map<string, IconData>([
+        ...this.specialIcons.entries(),
+        ...Object.entries(args.columnParams.customSpecialIcons),
+      ]);
+    }
+    if (args.columnParams.customFileIcons) {
+      this.fileIcons = new Map<string, IconData>([
+        ...this.fileIcons.entries(),
+        ...Object.entries(args.columnParams.customFileIcons),
+      ]);
+    }
+  }
+
   public async getLength(
     args: { denops: Denops; columnParams: Params; items: DduItem[] },
   ): Promise<number> {
@@ -125,6 +146,8 @@ export class Column extends BaseColumn<Params> {
       defaultIcon: { icon: " ", color: "Normal" },
       linkIcon: { icon: "", color: "#808080" },
       useLinkIcon: "always",
+      customSpecialIcons: {},
+      customFileIcons: {},
     };
   }
 
@@ -155,7 +178,7 @@ export class Column extends BaseColumn<Params> {
     })();
     if (isLink && params.useLinkIcon == "always") return linkIcon;
 
-    const sp = specialIcons.get(fname.toLowerCase());
+    const sp = this.specialIcons.get(fname.toLowerCase());
     if (sp) {
       if (isLink && params.useLinkIcon == "grayout") {
         sp.hl_group = linkIcon.hl_group;
@@ -169,7 +192,7 @@ export class Column extends BaseColumn<Params> {
     }
 
     const extention = extname(fname).substring(1);
-    const file = fileIcons.get(extention);
+    const file = this.fileIcons.get(extention);
     if (file) {
       if (isLink && params.useLinkIcon == "grayout") {
         file.hl_group = linkIcon.hl_group;
