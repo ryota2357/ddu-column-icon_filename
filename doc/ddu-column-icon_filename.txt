@@ -68,10 +68,11 @@ defaultIcon	(dictionary)
 		color			(string)
 		Specify default icon highlight.
 		If it start with #, it is interpreted as a hex color code.
-		Default: "Normal"
+		If it start with !, it refers to |ddu-column-icon_filename-param-colors|.
+		Default: "!normal"
 
 				*ddu-column-icon_filename-param-linkIcon*
-linkIcon	(dictionary | boolean)
+linkIcon	(dictionary)
 		It specifies link icon.
 		It can contain following keys.
 
@@ -82,6 +83,7 @@ linkIcon	(dictionary | boolean)
 		color			(string)
 		Specify default icon highlight.
 		If it start with #, it is interpreted as a hex color code.
+		If it start with !, it refers to |ddu-column-icon_filename-param-colors|.
 		Default: "#808080"
 
 				*ddu-column-icon_filename-param-useLinkIcon*
@@ -99,7 +101,7 @@ useLinkIcon	(string)
 				*ddu-column-icon_filename-param-customSpecialIcons*
 customSpecialIcons	(dictionary)
 
-		Examples: >
+		Example: >
 	call ddu#custom#patch_global('columnParams', {
 	  \  'icon_filename': {
 	  \    'customSpecialIcons': {
@@ -112,7 +114,7 @@ customSpecialIcons	(dictionary)
 				*ddu-column-icon_filename-param-customFileIcons*
 customFileIcons		(dictionary)
 
-		Examples: >
+		Example: >
 	call ddu#custom#patch_global('columnParams', {
 	  \  'icon_filename': {
 	  \    'customFileIcons': {
@@ -122,5 +124,28 @@ customFileIcons		(dictionary)
 	  \   }
 	  \ })
 <
+				*ddu-column-icon_filename-param-colors*
+colors		(dictionary)
+		Color palette.
+		You can override some of the colors and add new colors.
+
+		Default:
+		  normal      = Normal
+		  aqua        = #4AFFDB
+		  beige       = #F5C06F
+		  blue        = #689FB6
+		  brown       = #905532
+		  darkBlue    = #44788E
+		  darkOrange  = #F16529
+		  green       = #8FAA54
+		  lightGreen  = #31B53E
+		  lightPurple = #834F79
+		  orange      = #D4843E
+		  pink        = #CB6F6F
+		  purple      = #834F79
+		  red         = #AE403F
+		  salmon      = #EE6E73
+		  yellow      = #F09F17
+
 ==============================================================================
 vim:tw=78:ts=8:ft=help:norl:noet:fen:noet:
