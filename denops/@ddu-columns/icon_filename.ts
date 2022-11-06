@@ -12,8 +12,8 @@ type Params = {
   span: number;
   padding: number;
   iconWidth: number;
-  defaultIcon: DefautIcon;
-  linkIcon: linkIcons;
+  defaultIcon: IconParam;
+  linkIcon: IconParam;
   useLinkIcon: "always" | "grayout" | "default" | "none";
 };
 
@@ -23,12 +23,7 @@ type ActionData = {
   path?: string;
 };
 
-type DefautIcon = {
-  icon?: string;
-  color?: string;
-};
-
-type linkIcons = {
+type IconParam = {
   icon?: string;
   color?: string;
 };
