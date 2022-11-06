@@ -15,6 +15,8 @@ type Params = {
   defaultIcon: IconParam;
   linkIcon: IconParam;
   useLinkIcon: "always" | "grayout" | "default" | "none";
+  customSpecialIcons: Record<string, IconParam>;
+  customFileIcons: Record<string, IconParam>;
 };
 
 type ActionData = {
@@ -120,6 +122,8 @@ export class Column extends BaseColumn<Params> {
       defaultIcon: { icon: " ", color: "Normal" },
       linkIcon: { icon: "", color: "#808080" },
       useLinkIcon: "always",
+      customSpecialIcons: {},
+      customFileIcons: {},
     };
   }
 
@@ -131,6 +135,17 @@ export class Column extends BaseColumn<Params> {
     return basename(path) + (isDirectory ? "/" : "");
   }
 
+  // case(1): isLink? and useLinkIcon == always
+  //     return linkIcon
+  // case(2): match specialIcons
+  //     return customSpecialIcon ?? specialIcon.marge(useLinkIcon == "grayout)
+  // case(3): isDirectory?
+  //     return folderIcons
+  // case(4): match fileIcons
+  //     return customFileIcon ?? fileIcon.marge(useLinkIcon == "grayout")
+  // case(5): isLink? and useLinkIcon == "default"
+  //     return linkIcon
+  // return defaultIcon
   private getIcon(
     fname: string,
     expanded: boolean,
@@ -138,7 +153,6 @@ export class Column extends BaseColumn<Params> {
     params: Params,
   ): IconData {
     const isDirectory = fname[fname.length - 1] == "/";
-
     const linkIcon = (() => {
       const icon = params.linkIcon.icon ?? "";
       const color = params.linkIcon.color ?? "#808080";
@@ -148,9 +162,23 @@ export class Column extends BaseColumn<Params> {
         color: color,
       };
     })();
+
+    // case(1)
     if (isLink && params.useLinkIcon == "always") return linkIcon;
 
-    const sp = specialIcons.get(fname.toLowerCase());
+    // case(2)
+    const sp = (() => {
+      const name = fname.toLowerCase();
+      const custom = params.customSpecialIcons[name];
+      const builtin = specialIcons.get(name);
+      return custom
+        ? {
+          icon: custom.icon ?? builtin?.icon,
+          color: custom.color ?? builtin?.color,
+          hl_group: "csp_" + (custom.icon?.charCodeAt(0) ?? 0).toString(),
+        } as IconData
+        : builtin;
+    })();
     if (sp) {
       if (isLink && params.useLinkIcon == "grayout") {
         sp.hl_group = linkIcon.hl_group;
@@ -159,12 +187,24 @@ export class Column extends BaseColumn<Params> {
       return sp;
     }
 
+    // case(3)
     if (isDirectory) {
       return expanded ? folderIcons.expand : folderIcons.collaps;
     }
 
-    const extention = extname(fname).substring(1);
-    const file = fileIcons.get(extention);
+    // case(4)
+    const file = (() => {
+      const ext = extname(fname).substring(1);
+      const custom = params.customFileIcons[ext];
+      const builtin = fileIcons.get(ext);
+      return custom
+        ? {
+          icon: custom.icon ?? builtin?.icon,
+          color: custom.color ?? builtin?.color,
+          hl_group: "cfile_" + (custom.icon?.charCodeAt(0) ?? 0).toString(),
+        } as IconData
+        : builtin;
+    })();
     if (file) {
       if (isLink && params.useLinkIcon == "grayout") {
         file.hl_group = linkIcon.hl_group;
@@ -173,8 +213,10 @@ export class Column extends BaseColumn<Params> {
       return file;
     }
 
+    // case(5)
     if (isLink && params.useLinkIcon != "none") return linkIcon;
 
+    // default
     const defoIcon = params.defaultIcon.icon ?? " ";
     const defoColor = params.defaultIcon.color ?? "Normal";
     return {
