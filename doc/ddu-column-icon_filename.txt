@@ -69,7 +69,7 @@ defaultIcon	(dictionary)
 		Specify default icon highlight.
 		If it start with #, it is interpreted as a hex color code.
 		If it start with !, it refers to |ddu-column-icon_filename-param-colors|.
-		Default: "!normal"
+		Default: "!default"
 
 				*ddu-column-icon_filename-param-linkIcon*
 linkIcon	(dictionary)
@@ -100,29 +100,39 @@ useLinkIcon	(string)
 
 				*ddu-column-icon_filename-param-customSpecialIcons*
 customSpecialIcons	(dictionary)
+		Configure custom special icon.
+		"special icon" is used when there is an exact match to a
+		certain file name (ignore case).
 
-		Example: >
-	call ddu#custom#patch_global('columnParams', {
-	  \  'icon_filename': {
-	  \    'customSpecialIcons': {
-	  \      '.github/': { 'icon': '' },
-	  \      'abc_def': { 'icon': '', 'color': '#123456' }
-	  \     }
-	  \   }
-	  \ })
+		Example:
+		  - Change .github directory icon to 
+		  - Set new icon   for abc.txt (ABC.txt, aBc.txt)
+>
+		call ddu#custom#patch_global('columnParams', {
+		  \  'icon_filename': {
+		  \    'customSpecialIcons': {
+		  \      '.github/': { 'icon': '' },
+		  \      'abc.txt': { 'icon': '', 'color': '#123456' }
+		  \     }
+		  \   }
+		  \ })
 <
 				*ddu-column-icon_filename-param-customFileIcons*
 customFileIcons		(dictionary)
+		Configure custom file icon.
+		"file icon" is specified by file extention.
 
-		Example: >
-	call ddu#custom#patch_global('columnParams', {
-	  \  'icon_filename': {
-	  \    'customFileIcons': {
-	  \      'tex': { 'icon': 'ﭨ' },
-	  \      'abc': { 'icon': '', 'color': '#123456' }
-	  \     }
-	  \   }
-	  \ })
+		Example:
+		  - Change *.tex icon to ﭨ
+		  - Set new icon   for *.abc (color is #123456) >
+		call ddu#custom#patch_global('columnParams', {
+		  \  'icon_filename': {
+		  \    'customFileIcons': {
+		  \      'tex': { 'icon': 'ﭨ' },
+		  \      'abc': { 'icon': '', 'color': '#123456' }
+		  \     }
+		  \   }
+		  \ })
 <
 				*ddu-column-icon_filename-param-colors*
 colors		(dictionary)
@@ -130,7 +140,7 @@ colors		(dictionary)
 		You can override some of the colors and add new colors.
 
 		Default:
-		  normal      = Normal
+		  default     = Normal
 		  aqua        = #4AFFDB
 		  beige       = #F5C06F
 		  blue        = #689FB6
