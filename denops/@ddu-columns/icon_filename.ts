@@ -38,7 +38,7 @@ type IconData = {
 };
 
 export class Column extends BaseColumn<Params> {
-  public async getLength(
+  public override async getLength(
     args: { denops: Denops; columnParams: Params; items: DduItem[] },
   ): Promise<number> {
     const widths = await Promise.all(
@@ -60,7 +60,7 @@ export class Column extends BaseColumn<Params> {
     return Math.max(...widths);
   }
 
-  public async getText(args: {
+  public override async getText(args: {
     denops: Denops;
     columnParams: Params;
     startCol: number;
@@ -123,7 +123,7 @@ export class Column extends BaseColumn<Params> {
     };
   }
 
-  public params(): Params {
+  public override params(): Params {
     return {
       span: 1,
       padding: 1,
