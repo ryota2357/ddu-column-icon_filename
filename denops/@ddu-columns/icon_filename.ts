@@ -6,12 +6,17 @@ import {
 import { GetTextResult } from "https://deno.land/x/ddu_vim@v2.2.0/base/column.ts";
 import { Denops, fn } from "https://deno.land/x/ddu_vim@v2.2.0/deps.ts";
 import { ambiwidth } from "https://deno.land/x/denops_std@v4.0.0/option/mod.ts";
-import { basename, extname } from "https://deno.land/std@0.171.0/path/mod.ts";
+import {
+  basename,
+  extname,
+  relative,
+} from "https://deno.land/std@0.171.0/path/mod.ts";
 
 type Params = {
   span: number;
   padding: number;
   iconWidth: number;
+  pathDisplayOption: "basename" | "relative";
   defaultIcon: IconParam;
   linkIcon: IconParam;
   useLinkIcon: "always" | "grayout" | "default" | "none";
@@ -44,10 +49,23 @@ export class Column extends BaseColumn<Params> {
     const widths = await Promise.all(
       args.items.map(async (item) => {
         const action = item?.action as ActionData;
-        const filename = this.getFilename(
-          action.path ?? item.word,
-          action.isDirectory ?? false,
-        );
+
+        let filename: string;
+        switch (args.columnParams.pathDisplayOption) {
+          case "basename":
+            filename = this.getBasenameFilename(
+              action.path ?? item.word,
+              action.isDirectory ?? false,
+            );
+            break;
+
+          case "relative":
+            filename = this.getRelativeFilename(
+              action.path ?? item.word,
+              action.isDirectory ?? false,
+            );
+            break;
+        }
 
         const indent = item.__level + args.columnParams.padding;
         const iconWidth = args.columnParams.iconWidth;
@@ -69,10 +87,23 @@ export class Column extends BaseColumn<Params> {
   }): Promise<GetTextResult> {
     const action = args.item?.action as ActionData;
     const highlights: ItemHighlight[] = [];
-    const filename = this.getFilename(
-      action.path ?? args.item.word,
-      action.isDirectory ?? false,
-    );
+
+    let filename: string;
+    switch (args.columnParams.pathDisplayOption) {
+      case "basename":
+        filename = this.getBasenameFilename(
+          action.path ?? args.item.word,
+          action.isDirectory ?? false,
+        );
+        break;
+
+      case "relative":
+        filename = this.getRelativeFilename(
+          action.path ?? args.item.word,
+          action.isDirectory ?? false,
+        );
+        break;
+    }
 
     const iconData = this.getIcon(
       filename,
@@ -128,6 +159,7 @@ export class Column extends BaseColumn<Params> {
       span: 1,
       padding: 1,
       iconWidth: 1,
+      pathDisplayOption: "basename",
       defaultIcon: { icon: " ", color: "!default" },
       linkIcon: { icon: "", color: "#808080" },
       useLinkIcon: "always",
@@ -141,8 +173,12 @@ export class Column extends BaseColumn<Params> {
     return " ".repeat(Math.max(0, count));
   }
 
-  private getFilename(path: string, isDirectory: boolean): string {
+  private getBasenameFilename(path: string, isDirectory: boolean): string {
     return basename(path) + (isDirectory ? "/" : "");
+  }
+
+  private getRelativeFilename(path: string, isDirectory: boolean): string {
+    return relative(".", path) + (isDirectory ? "/" : "");
   }
 
   // case(1): isLink? and useLinkIcon == always
