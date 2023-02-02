@@ -55,6 +55,15 @@ iconWidth	(number)
 
 		Default: 1
 
+				*ddu-column-icon_filename-param-pathDisplayOption*
+pathDisplayOption	(string)
+		Display options for file name.
+
+		"basename"	Displays only filename.
+		"relative"	Displays paths relative to the current directory.
+
+		Default: "basename"
+
 				*ddu-column-icon_filename-param-defaultIcon*
 defaultIcon	(dictionary)
 		It specifies default icon which is used when none of the
