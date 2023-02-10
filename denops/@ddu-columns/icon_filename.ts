@@ -10,7 +10,7 @@ import {
   basename,
   extname,
   relative,
-} from "https://deno.land/std@0.171.0/path/mod.ts";
+} from "https://deno.land/std@0.177.0/path/mod.ts";
 
 type Params = {
   span: number;
@@ -320,6 +320,7 @@ const folderIcons: Record<"expand" | "collaps", IconData> = {
 // deno-fmt-ignore-start
 const specialIcons = new Map<string, IconData>([                                               // nerd font class name
   [".ds_store",          { icon: "", hl_group: "sp_ds_store",    color: palette.default    }], // nf-dev-aptana
+  [".editorconfig",      { icon: "", hl_group: "sp_editorconfig",color: palette.default    }], // nf-dev-aptana
   [".gitignore",         { icon: "", hl_group: "sp_gitignore",   color: palette.darkOrange }], // nf-dev-git
   [".gitconfig",         { icon: "", hl_group: "sp_gitconfig",   color: palette.default    }], // nf-dev-aptana
   [".gitlab-ci.yml",     { icon: "", hl_group: "sp_gitlab_ci",   color: palette.default    }], // nf-fa-gitlab
@@ -347,6 +348,7 @@ const fileIcons = new Map<string, IconData>([                                   
   ["awk",    { icon: "", hl_group: "file_awk",    color: palette.default     }], // nf-dev-terminal
   ["bash",   { icon: "", hl_group: "file_bash",   color: palette.default     }], // nf-dev-terminal
   ["bat",    { icon: "", hl_group: "file_bat",    color: palette.default     }], // nf-dev-aptana
+  ["blend",  { icon: "", hl_group: "file_blend",  color: palette.darkOrange  }], // nf-mdi-blender
   ["bmp",    { icon: "", hl_group: "file_bmp",    color: palette.aqua        }], // nf-fa-file_image_o
   ["c",      { icon: "", hl_group: "file_c",      color: palette.blue        }], // nf-custom-c
   ["clj",    { icon: "", hl_group: "file_clj",    color: palette.green       }], // nf-dev-clojure
@@ -389,13 +391,17 @@ const fileIcons = new Map<string, IconData>([                                   
   ["lua",    { icon: "", hl_group: "file_lua",    color: palette.purple      }], // nf-seti-lua
   ["md",     { icon: "", hl_group: "file_md",     color: palette.blue        }], // nf-dev-markdown
   ["mdx",    { icon: "", hl_group: "file_mdx",    color: palette.blue        }], // nf-dev-markdown
-  ["mp3",    { icon: "", hl_group: "file_mp3",    color: palette.aqua        }], // nf-fa-file_audio_o
+  ["mov",    { icon: "", hl_group: "file_mov",    color: palette.orange      }], // nf-fa-file_movie_o
+  ["mp3",    { icon: "", hl_group: "file_mp3",    color: palette.salmon      }], // nf-fa-file_audio_o
+  ["mp4",    { icon: "", hl_group: "file_mp4",    color: palette.orange      }], // nf-fa-file_movie_o
+  ["otf",    { icon: "", hl_group: "file_otf",    color: palette.red         }], // nf-fa-font
   ["pdf",    { icon: "", hl_group: "file_pdf",    color: palette.darkOrange  }], // nf-oct-file_pdf
   ["php",    { icon: "", hl_group: "file_php",    color: palette.purple      }], // nf-dev-php
   ["pl",     { icon: "", hl_group: "file_pl",     color: palette.blue        }], // nf-dev-perl
   ["pm",     { icon: "", hl_group: "file_pm",     color: palette.blue        }], // nf-dev-perl
   ["png",    { icon: "", hl_group: "file_png",    color: palette.aqua        }], // nf-fa-file_image_o
   ["pp",     { icon: "", hl_group: "file_pp",     color: palette.default     }], // nf-oct-beaker
+  ["ppm",    { icon: "", hl_group: "file_ppm",    color: palette.aqua        }], // nf-fa-file_image_o
   ["ppt",    { icon: "", hl_group: "file_ppt",    color: palette.orange      }], // nf-fa-file_powerpoint_o
   ["pptx",   { icon: "", hl_group: "file_pptx",   color: palette.orange      }], // nf-fa-file_powerpoint_o
   ["psd",    { icon: "", hl_group: "file_psd",    color: palette.darkBlue    }], // nf-dev-photoshop
@@ -417,6 +423,7 @@ const fileIcons = new Map<string, IconData>([                                   
   ["toml",   { icon: "", hl_group: "file_toml",   color: palette.default     }], // nf-dev-aptana
   ["ts",     { icon: "", hl_group: "file_ts",     color: palette.blue        }], // nf-seti-typescript
   ["tsx",    { icon: "", hl_group: "file_tsx",    color: palette.blue        }], // nf-dev-react
+  ["ttf",    { icon: "", hl_group: "file_ttf",    color: palette.red         }], // nf-fa-font
   ["txt",    { icon: "", hl_group: "file_txt",    color: palette.default     }], // nf-seti-text
   ["vim",    { icon: "", hl_group: "file_vim",    color: palette.green       }], // nf-dev-vim
   ["vue",    { icon: "﵂", hl_group: "file_vue",    color: palette.green       }], // nf-mdi-vuejs
