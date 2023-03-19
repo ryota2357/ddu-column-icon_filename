@@ -338,7 +338,7 @@ const specialIcons = new Map<string, IconData>([                                
   [".git/",              { icon: "", hl_group: "sp_git",         color: "Directory"       }], // nf-custom-folder_git
   [".github/",           { icon: "", hl_group: "sp_github",      color: "Directory"       }], // nf-custom-folder_github
   ["dropbox/",           { icon: "", hl_group: "sp_dropbox",     color: "Directory"       }], // nf-dev-dropbox
-  ["node_modules/",      { icon: "", hl_group: "sp_node_module", color: "Directory"       }], // nf-mdi-nodejs
+  ["node_modules/",      { icon: "", hl_group: "sp_node_module", color: "Directory"       }], // nf-dev-nodejs_small
 ]);
 // deno-fmt-ignore-end
 
