@@ -2,9 +2,9 @@ import {
   BaseColumn,
   DduItem,
   ItemHighlight,
-} from "https://deno.land/x/ddu_vim@v2.8.0/types.ts";
-import { GetTextResult } from "https://deno.land/x/ddu_vim@v2.8.0/base/column.ts";
-import { Denops, fn } from "https://deno.land/x/ddu_vim@v2.8.0/deps.ts";
+} from "https://deno.land/x/ddu_vim@v2.8.3/types.ts";
+import { GetTextResult } from "https://deno.land/x/ddu_vim@v2.8.3/base/column.ts";
+import { Denops, fn } from "https://deno.land/x/ddu_vim@v2.8.3/deps.ts";
 import { ambiwidth } from "https://deno.land/x/denops_std@v4.1.5/option/mod.ts";
 import {
   basename,
