@@ -346,6 +346,7 @@ const specialIcons = new Map<string, IconData>([                                
 // deno-fmt-ignore-start
 const fileIcons = new Map<string, IconData>([                                    // nerd font class name
   ["ai",     { icon: "", hl_group: "file_ai",     color: palette.darkOrange  }], // nf-dev-illustrator
+  ["astro",  { icon: "", hl_group: "file_astro",  color: palette.orange      }], // nf-dev-code
   ["awk",    { icon: "", hl_group: "file_awk",    color: palette.default     }], // nf-dev-terminal
   ["bash",   { icon: "", hl_group: "file_bash",   color: palette.default     }], // nf-dev-terminal
   ["bat",    { icon: "", hl_group: "file_bat",    color: palette.default     }], // nf-dev-aptana
@@ -366,7 +367,7 @@ const fileIcons = new Map<string, IconData>([                                   
   ["dart",   { icon: "", hl_group: "file_dart",   color: palette.blue        }], // nf-dev-dart
   ["doc",    { icon: "", hl_group: "file_doc",    color: palette.darkBlue    }], // nf-fa-file_word_o
   ["docx",   { icon: "", hl_group: "file_docx",   color: palette.darkBlue    }], // nf-fa-file_word_o
-  ["elm",    { icon: "", hl_group: "file_elm",    color: palette.default     }], // nf-dev-dart
+  ["elm",    { icon: "", hl_group: "file_elm",    color: palette.default     }], // nf-custom-elm
   ["ex",     { icon: "", hl_group: "file_ex",     color: palette.lightPurple }], // nf-custom-elixir
   ["exs",    { icon: "", hl_group: "file_exs",    color: palette.lightPurple }], // nf-custom-elixir
   ["fish",   { icon: "", hl_group: "file_fish",   color: palette.green       }], // nf-dev-terminal
@@ -389,14 +390,14 @@ const fileIcons = new Map<string, IconData>([                                   
   ["json",   { icon: "", hl_group: "file_json",   color: palette.beige       }], // nf-seti-json
   ["lock",   { icon: "", hl_group: "file_lock",   color: palette.beige       }], // nf-fa-lock
   ["log",    { icon: "", hl_group: "file_log",    color: palette.yellow      }], // nf-oct-file
-  ["lua",    { icon: "", hl_group: "file_lua",    color: palette.purple      }], // nf-seti-lua
+  ["lua",    { icon: "󰢱", hl_group: "file_lua",    color: palette.purple      }], // nf-md-language_lua
   ["md",     { icon: "", hl_group: "file_md",     color: palette.blue        }], // nf-dev-markdown
   ["mdx",    { icon: "", hl_group: "file_mdx",    color: palette.blue        }], // nf-dev-markdown
   ["mov",    { icon: "", hl_group: "file_mov",    color: palette.orange      }], // nf-fa-file_movie_o
   ["mp3",    { icon: "", hl_group: "file_mp3",    color: palette.salmon      }], // nf-fa-file_audio_o
   ["mp4",    { icon: "", hl_group: "file_mp4",    color: palette.orange      }], // nf-fa-file_movie_o
   ["otf",    { icon: "", hl_group: "file_otf",    color: palette.red         }], // nf-fa-font
-  ["pdf",    { icon: "", hl_group: "file_pdf",    color: palette.darkOrange  }], // nf-oct-file_pdf
+  ["pdf",    { icon: "", hl_group: "file_pdf",    color: palette.darkOrange  }], // nf-fa-file_pdf_o
   ["php",    { icon: "", hl_group: "file_php",    color: palette.purple      }], // nf-dev-php
   ["pl",     { icon: "", hl_group: "file_pl",     color: palette.blue        }], // nf-dev-perl
   ["pm",     { icon: "", hl_group: "file_pm",     color: palette.blue        }], // nf-dev-perl
@@ -407,8 +408,8 @@ const fileIcons = new Map<string, IconData>([                                   
   ["pptx",   { icon: "", hl_group: "file_pptx",   color: palette.orange      }], // nf-fa-file_powerpoint_o
   ["psd",    { icon: "", hl_group: "file_psd",    color: palette.darkBlue    }], // nf-dev-photoshop
   ["py",     { icon: "", hl_group: "file_py",     color: palette.yellow      }], // nf-dev-python
-  ["rake",   { icon: "", hl_group: "file_rake",   color: palette.red         }], // nf-dev-ruby
-  ["rb",     { icon: "", hl_group: "file_rb",     color: palette.red         }], // nf-dev-ruby
+  ["rake",   { icon: "", hl_group: "file_rake",   color: palette.red         }], // nf-dev-ruby_rough
+  ["rb",     { icon: "", hl_group: "file_rb",     color: palette.red         }], // nf-dev-ruby_rough
   ["rmd",    { icon: "", hl_group: "file_rmd",    color: palette.blue        }], // nf-dev-markdown
   ["rs",     { icon: "", hl_group: "file_rs",     color: palette.red         }], // nf-dev-rust
   ["rss",    { icon: "", hl_group: "file_rss",    color: palette.darkOrange  }], // nf-fa-rss
