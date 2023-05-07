@@ -349,7 +349,7 @@ const fileIcons = new Map<string, IconData>([                                   
   ["awk",    { icon: "", hl_group: "file_awk",    color: palette.default     }], // nf-dev-terminal
   ["bash",   { icon: "", hl_group: "file_bash",   color: palette.default     }], // nf-dev-terminal
   ["bat",    { icon: "", hl_group: "file_bat",    color: palette.default     }], // nf-dev-aptana
-  ["blend",  { icon: "", hl_group: "file_blend",  color: palette.darkOrange  }], // nf-mdi-blender
+  ["blend",  { icon: "󰂫", hl_group: "file_blend",  color: palette.darkOrange  }], // nf-md-blender_software
   ["bmp",    { icon: "", hl_group: "file_bmp",    color: palette.aqua        }], // nf-fa-file_image_o
   ["c",      { icon: "", hl_group: "file_c",      color: palette.blue        }], // nf-custom-c
   ["clj",    { icon: "", hl_group: "file_clj",    color: palette.green       }], // nf-dev-clojure
@@ -358,7 +358,7 @@ const fileIcons = new Map<string, IconData>([                                   
   ["coffee", { icon: "", hl_group: "file_coffee", color: palette.brown       }], // nf-dev-coffeescript
   ["conf",   { icon: "", hl_group: "file_conf",   color: palette.default     }], // nf-dev-aptana
   ["cpp",    { icon: "", hl_group: "file_cpp",    color: palette.blue        }], // nf-custom-cpp
-  ["cs",     { icon: "", hl_group: "file_cs",     color: palette.blue        }], // nf-mdi-language_csharp
+  ["cs",     { icon: "󰌛", hl_group: "file_cs",     color: palette.blue        }], // nf-md-language_csharp
   ["csh",    { icon: "", hl_group: "file_csh",    color: palette.default     }], // nf-dev-terminal
   ["css",    { icon: "", hl_group: "file_css",    color: palette.blue        }], // nf-dev-css3
   ["d",      { icon: "", hl_group: "file_d",      color: palette.red         }], // nf-dev-dlangd
@@ -420,14 +420,14 @@ const fileIcons = new Map<string, IconData>([                                   
   ["sln",    { icon: "", hl_group: "file_sln",    color: palette.purple      }], // nf-dev-visualstudio
   ["styl",   { icon: "", hl_group: "file_styl",   color: palette.green       }], // nf-dev-stylus
   ["swift",  { icon: "", hl_group: "file_swift",  color: palette.orange      }], // nf-dev-swift
-  ["tex",    { icon: "", hl_group: "file_tex",    color: palette.default     }], // nf-mdi-text_shadow
+  ["tex",    { icon: "", hl_group: "file_tex",    color: palette.default     }], // nf-seti-tex
   ["toml",   { icon: "", hl_group: "file_toml",   color: palette.default     }], // nf-dev-aptana
   ["ts",     { icon: "", hl_group: "file_ts",     color: palette.blue        }], // nf-seti-typescript
   ["tsx",    { icon: "", hl_group: "file_tsx",    color: palette.blue        }], // nf-dev-react
   ["ttf",    { icon: "", hl_group: "file_ttf",    color: palette.red         }], // nf-fa-font
   ["txt",    { icon: "", hl_group: "file_txt",    color: palette.default     }], // nf-seti-text
   ["vim",    { icon: "", hl_group: "file_vim",    color: palette.green       }], // nf-dev-vim
-  ["vue",    { icon: "﵂", hl_group: "file_vue",    color: palette.green       }], // nf-mdi-vuejs
+  ["vue",    { icon: "󰡄", hl_group: "file_vue",    color: palette.green       }], // nf-md-vuejs
   ["webp",   { icon: "", hl_group: "file_webp",   color: palette.aqua        }], // nf-fa-file_image_o
   ["xls",    { icon: "", hl_group: "file_xls",    color: palette.lightGreen  }], // nf-fa-file_excel_o
   ["xlsx",   { icon: "", hl_group: "file_xlsx",   color: palette.lightGreen  }], // nf-fa-file_excel_o
