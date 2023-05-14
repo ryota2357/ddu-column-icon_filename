@@ -5,7 +5,6 @@ import {
 } from "https://deno.land/x/ddu_vim@v2.8.4/types.ts";
 import { GetTextResult } from "https://deno.land/x/ddu_vim@v2.8.4/base/column.ts";
 import { Denops, fn } from "https://deno.land/x/ddu_vim@v2.8.4/deps.ts";
-import { ambiwidth } from "https://deno.land/x/denops_std@v4.3.0/option/mod.ts";
 import {
   basename,
   extname,
@@ -43,6 +42,8 @@ type IconData = {
 };
 
 export class Column extends BaseColumn<Params> {
+  private readonly textEncoder = new TextEncoder();
+
   public override async getLength(
     args: { denops: Denops; columnParams: Params; items: DduItem[] },
   ): Promise<number> {
@@ -70,7 +71,10 @@ export class Column extends BaseColumn<Params> {
         const indent = item.__level + args.columnParams.padding;
         const iconWidth = args.columnParams.iconWidth;
         const span = args.columnParams.span;
-        const itemLength = await fn.strwidth(args.denops, filename) as number;
+        const itemLength = await fn.strdisplaywidth(
+          args.denops,
+          filename,
+        ) as number;
 
         return indent + iconWidth + span + itemLength;
       }),
@@ -126,7 +130,7 @@ export class Column extends BaseColumn<Params> {
 
     // set highlight
     const hl_group = `ddu_column_${iconData.hl_group}`;
-    const iconWidth = await fn.strwidth(args.denops, iconData.icon) as number;
+    const iconByteLength = this.textEncoder.encode(iconData.icon).length;
     const color = (() => {
       const col = iconData.color;
       return col.startsWith("!")
@@ -138,9 +142,8 @@ export class Column extends BaseColumn<Params> {
     highlights.push({
       name: "column-icons-icon",
       hl_group: hl_group,
-      col: args.startCol + args.columnParams.padding + args.item.__level +
-        iconWidth + (await ambiwidth.get(args.denops) == "single" ? 1 : 0),
-      width: iconWidth,
+      col: args.startCol + args.columnParams.padding + args.item.__level,
+      width: iconByteLength,
     });
     if (color.startsWith("#")) {
       await args.denops.cmd(`hi default ${hl_group} guifg=${color}`);
