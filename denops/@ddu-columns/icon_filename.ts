@@ -110,7 +110,11 @@ export class Column extends BaseColumn<Params> {
     }
 
     const iconData = this.getIcon(
-      filename,
+      // NOTE: If pass `filename` as 1st args, `getIcon()` does not handle specialIcon correctly
+      this.getBasenameFilename(
+        action.path ?? args.item.word,
+        action.isDirectory ?? false,
+      ),
       args.item.__expanded,
       action.isLink ?? false,
       args.columnParams,
