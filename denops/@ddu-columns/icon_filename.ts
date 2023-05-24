@@ -2,14 +2,14 @@ import {
   BaseColumn,
   DduItem,
   ItemHighlight,
-} from "https://deno.land/x/ddu_vim@v2.8.4/types.ts";
-import { GetTextResult } from "https://deno.land/x/ddu_vim@v2.8.4/base/column.ts";
-import { Denops, fn } from "https://deno.land/x/ddu_vim@v2.8.4/deps.ts";
+} from "https://deno.land/x/ddu_vim@v2.8.5/types.ts";
+import { GetTextResult } from "https://deno.land/x/ddu_vim@v2.8.5/base/column.ts";
+import { Denops, fn } from "https://deno.land/x/ddu_vim@v2.8.5/deps.ts";
 import {
   basename,
   extname,
   relative,
-} from "https://deno.land/std@0.187.0/path/mod.ts";
+} from "https://deno.land/std@0.188.0/path/mod.ts";
 
 type Params = {
   span: number;
@@ -74,7 +74,7 @@ export class Column extends BaseColumn<Params> {
         const itemLength = await fn.strdisplaywidth(
           args.denops,
           filename,
-        ) as number;
+        );
 
         return indent + iconWidth + span + itemLength;
       }),
@@ -126,7 +126,7 @@ export class Column extends BaseColumn<Params> {
     );
     const span = this.whitespace(args.columnParams.span);
     const body = indent + iconData.icon + span + filename;
-    const bodyWidth = await fn.strwidth(args.denops, body) as number;
+    const bodyWidth = await fn.strwidth(args.denops, body);
     const padding = this.whitespace(
       Math.max(0, args.endCol - args.startCol - bodyWidth),
     );
