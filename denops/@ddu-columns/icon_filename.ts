@@ -44,9 +44,12 @@ type IconData = {
 export class Column extends BaseColumn<Params> {
   private readonly textEncoder = new TextEncoder();
 
-  public override async getLength(
-    args: { denops: Denops; columnParams: Params; items: DduItem[] },
-  ): Promise<number> {
+  public override async getLength(args: {
+    denops: Denops;
+    columnParams: Params;
+    items: DduItem[];
+  }): Promise<number> {
+    const cwd = await fn.getcwd(args.denops);
     const widths = await Promise.all(
       args.items.map(async (item) => {
         const action = item?.action as ActionData;
@@ -62,6 +65,7 @@ export class Column extends BaseColumn<Params> {
 
           case "relative":
             filename = this.getRelativeFilename(
+              cwd,
               action.path ?? item.word,
               action.isDirectory ?? false,
             );
@@ -71,10 +75,7 @@ export class Column extends BaseColumn<Params> {
         const indent = item.__level + args.columnParams.padding;
         const iconWidth = args.columnParams.iconWidth;
         const span = args.columnParams.span;
-        const itemLength = await fn.strdisplaywidth(
-          args.denops,
-          filename,
-        );
+        const itemLength = await fn.strdisplaywidth(args.denops, filename);
 
         return indent + iconWidth + span + itemLength;
       }),
@@ -103,6 +104,7 @@ export class Column extends BaseColumn<Params> {
 
       case "relative":
         filename = this.getRelativeFilename(
+          await fn.getcwd(args.denops),
           action.path ?? args.item.word,
           action.isDirectory ?? false,
         );
@@ -184,8 +186,12 @@ export class Column extends BaseColumn<Params> {
     return basename(path) + (isDirectory ? "/" : "");
   }
 
-  private getRelativeFilename(path: string, isDirectory: boolean): string {
-    return relative(".", path) + (isDirectory ? "/" : "");
+  private getRelativeFilename(
+    cwd: string,
+    path: string,
+    isDirectory: boolean,
+  ): string {
+    return relative(cwd, path) + (isDirectory ? "/" : "");
   }
 
   // case(1): isLink? and useLinkIcon == always
@@ -225,11 +231,11 @@ export class Column extends BaseColumn<Params> {
       const custom = params.customSpecialIcons[name];
       const builtin = specialIcons.get(name);
       return custom
-        ? {
+        ? ({
           icon: custom.icon ?? builtin?.icon,
           color: custom.color ?? builtin?.color,
           hl_group: "csp_" + (custom.icon?.charCodeAt(0) ?? 0).toString(),
-        } as IconData
+        } as IconData)
         : builtin;
     })();
     if (sp) {
@@ -251,11 +257,11 @@ export class Column extends BaseColumn<Params> {
       const custom = params.customFileIcons[ext];
       const builtin = fileIcons.get(ext);
       return custom
-        ? {
+        ? ({
           icon: custom.icon ?? builtin?.icon,
           color: custom.color ?? builtin?.color,
           hl_group: "cfile_" + (custom.icon?.charCodeAt(0) ?? 0).toString(),
-        } as IconData
+        } as IconData)
         : builtin;
     })();
     if (file) {
