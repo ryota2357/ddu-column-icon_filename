@@ -2,14 +2,14 @@ import {
   BaseColumn,
   DduItem,
   ItemHighlight,
-} from "https://deno.land/x/ddu_vim@v3.0.0/types.ts";
-import { GetTextResult } from "https://deno.land/x/ddu_vim@v3.0.0/base/column.ts";
-import { Denops, fn } from "https://deno.land/x/ddu_vim@v3.0.0/deps.ts";
+} from "https://deno.land/x/ddu_vim@v3.1.0/types.ts";
+import { GetTextResult } from "https://deno.land/x/ddu_vim@v3.1.0/base/column.ts";
+import { Denops, fn } from "https://deno.land/x/ddu_vim@v3.1.0/deps.ts";
 import {
   basename,
   extname,
   relative,
-} from "https://deno.land/std@0.191.0/path/mod.ts";
+} from "https://deno.land/std@0.192.0/path/mod.ts";
 
 type Params = {
   span: number;
