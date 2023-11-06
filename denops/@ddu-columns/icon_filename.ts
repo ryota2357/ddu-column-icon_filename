@@ -9,7 +9,7 @@ import {
   basename,
   extname,
   relative,
-} from "https://deno.land/std@0.203.0/path/mod.ts";
+} from "https://deno.land/std@0.205.0/path/mod.ts";
 
 type Params = {
   span: number;
