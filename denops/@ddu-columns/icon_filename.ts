@@ -352,6 +352,7 @@ const specialIcons = new Map<string, IconData>([                                
   ["dockerfile",          { icon: "", hl_group: "sp_license",       color: palette.blue       }], // nf-dev-docker
   ["dropbox/",            { icon: "", hl_group: "sp_dropbox",       color: "Directory"        }], // nf-dev-dropbox
   ["favicon.ico",         { icon: "", hl_group: "sp_favicon",       color: palette.yellow     }], // nf-seti-favicon
+  ["init.vim",            { icon: "", hl_group: "sp_neovim",        color: palette.green      }], // nf-custom-neovim
   ["license",             { icon: "", hl_group: "sp_license",       color: palette.default    }], // nf-seti-license
   ["license.md",          { icon: "", hl_group: "sp_license",       color: palette.default    }], // nf-seti-license
   ["license.txt",         { icon: "", hl_group: "sp_license",       color: palette.default    }], // nf-seti-license
@@ -442,6 +443,7 @@ const fileIcons = new Map<string, IconData>([                                   
   ["rss",       { icon: "", hl_group: "file_rss",        color: palette.darkOrange  }], // nf-fa-rss
   ["sass",      { icon: "", hl_group: "file_sass",       color: palette.default     }], // nf-dev-sass
   ["scala",     { icon: "", hl_group: "file_scala",      color: palette.red         }], // nf-dev-scala
+  ["scm",       { icon: "", hl_group: "file_scm",        color: palette.salmon      }], // nf-custom-scheme
   ["scss",      { icon: "", hl_group: "file_scss",       color: palette.pink        }], // nf-dev-sass
   ["sh",        { icon: "", hl_group: "file_sh",         color: palette.lightPurple }], // nf-dev-terminal
   ["slim",      { icon: "", hl_group: "file_slim",       color: palette.orange      }], // nf-seti-html
