@@ -451,7 +451,7 @@ const fileIcons = new Map<string, IconData>([                                   
   ["styl",      { icon: "", hl_group: "file_styl",       color: palette.green       }], // nf-dev-stylus
   ["swift",     { icon: "", hl_group: "file_swift",      color: palette.orange      }], // nf-dev-swift
   ["tex",       { icon: "", hl_group: "file_tex",        color: palette.default     }], // nf-seti-tex
-  ["toml",      { icon: "", hl_group: "file_toml",       color: palette.default     }], // nf-dev-aptana
+  ["toml",      { icon: "", hl_group: "file_toml",       color: palette.default     }], // nf-custom-toml
   ["ts",        { icon: "", hl_group: "file_ts",         color: palette.blue        }], // nf-seti-typescript
   ["tsx",       { icon: "", hl_group: "file_tsx",        color: palette.blue        }], // nf-dev-react
   ["ttf",       { icon: "", hl_group: "file_ttf",        color: palette.red         }], // nf-fa-font
