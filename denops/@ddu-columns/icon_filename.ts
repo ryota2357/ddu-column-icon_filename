@@ -394,6 +394,7 @@ const fileIcons = new Map<string, IconData>([                                   
   ["doc",       { icon: "", hl_group: "file_doc",        color: palette.darkBlue    }], // nf-fa-file_word_o
   ["dockerfile",{ icon: "", hl_group: "file_dockerfile", color: palette.blue        }], // nf-dev-docker
   ["docx",      { icon: "", hl_group: "file_docx",       color: palette.darkBlue    }], // nf-fa-file_word_o
+  ["dot",       { icon: "󱁊", hl_group: "file_dot",        color: palette.darkBlue    }], // nf-md-graph_outline
   ["elm",       { icon: "", hl_group: "file_elm",        color: palette.default     }], // nf-custom-elm
   ["ex",        { icon: "", hl_group: "file_ex",         color: palette.lightPurple }], // nf-custom-elixir
   ["exs",       { icon: "", hl_group: "file_exs",        color: palette.lightPurple }], // nf-custom-elixir
