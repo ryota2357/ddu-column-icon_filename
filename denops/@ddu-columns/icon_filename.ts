@@ -50,7 +50,7 @@ export class Column extends BaseColumn<Params> {
     items: DduItem[];
   }): Promise<number> {
     const cwd = await fn.getcwd(args.denops);
-    const widths = await Promise.all(
+    const lengths = await Promise.all(
       args.items.map(async (item) => {
         const action = item?.action as ActionData;
 
@@ -72,15 +72,26 @@ export class Column extends BaseColumn<Params> {
             break;
         }
 
-        const indent = item.__level + args.columnParams.padding;
-        const iconWidth = args.columnParams.iconWidth;
-        const span = args.columnParams.span;
-        const itemLength = await fn.strdisplaywidth(args.denops, filename);
+        const iconData = this.getIcon(
+          // NOTE: If pass `filename` as 1st args, `getIcon()` does not handle specialIcon correctly
+          this.getBasenameFilename(
+            action.path ?? item.word,
+            action.isDirectory ?? false,
+          ),
+          item.__expanded,
+          action.isLink ?? false,
+          args.columnParams,
+        );
 
-        return indent + iconWidth + span + itemLength;
+        const indent = item.__level + args.columnParams.padding;
+        const iconByteLength = this.textEncoder.encode(iconData.icon).length;
+        const span = args.columnParams.span;
+        const itemLength = await fn.strlen(args.denops, filename);
+
+        return indent + iconByteLength + span + itemLength;
       }),
     );
-    return Math.max(...widths);
+    return Math.max(...lengths);
   }
 
   public override async getText(args: {
@@ -128,9 +139,9 @@ export class Column extends BaseColumn<Params> {
     );
     const span = this.whitespace(args.columnParams.span);
     const body = indent + iconData.icon + span + filename;
-    const bodyWidth = await fn.strwidth(args.denops, body);
+    const bodyLength = await fn.strlen(args.denops, body);
     const padding = this.whitespace(
-      Math.max(0, args.endCol - args.startCol - bodyWidth),
+      Math.max(0, args.endCol - args.startCol - bodyLength),
     );
     const text = body + padding;
 
