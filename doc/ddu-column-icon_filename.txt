@@ -49,12 +49,6 @@ padding		(number)
 
 		Default: 1
 
-				*ddu-column-icon_filename-param-iconWidth*
-iconWidth	(number)
-		The size of icon.
-
-		Default: 1
-
 				*ddu-column-icon_filename-param-pathDisplayOption*
 pathDisplayOption	(string)
 		Display options for file name.

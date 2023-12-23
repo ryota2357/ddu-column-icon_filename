@@ -14,7 +14,6 @@ import {
 type Params = {
   span: number;
   padding: number;
-  iconWidth: number;
   pathDisplayOption: "basename" | "relative";
   defaultIcon: IconParam;
   linkIcon: IconParam;
@@ -178,7 +177,6 @@ export class Column extends BaseColumn<Params> {
     return {
       span: 1,
       padding: 1,
-      iconWidth: 1,
       pathDisplayOption: "basename",
       defaultIcon: { icon: " ", color: "!default" },
       linkIcon: { icon: "", color: "#808080" },
