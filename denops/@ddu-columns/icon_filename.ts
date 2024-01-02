@@ -40,9 +40,9 @@ type IconData = {
   color: string;
 };
 
-export class Column extends BaseColumn<Params> {
-  private readonly textEncoder = new TextEncoder();
+const textEncoder = new TextEncoder();
 
+export class Column extends BaseColumn<Params> {
   public override async getLength(args: {
     denops: Denops;
     columnParams: Params;
@@ -61,7 +61,6 @@ export class Column extends BaseColumn<Params> {
               action.isDirectory ?? false,
             );
             break;
-
           case "relative":
             filename = this.getRelativeFilename(
               cwd,
@@ -83,7 +82,7 @@ export class Column extends BaseColumn<Params> {
         );
 
         const indent = item.__level + args.columnParams.padding;
-        const iconByteLength = this.textEncoder.encode(iconData.icon).length;
+        const iconByteLength = textEncoder.encode(iconData.icon).length;
         const span = args.columnParams.span;
         const itemLength = await fn.strlen(args.denops, filename);
 
@@ -111,7 +110,6 @@ export class Column extends BaseColumn<Params> {
           action.isDirectory ?? false,
         );
         break;
-
       case "relative":
         filename = this.getRelativeFilename(
           await fn.getcwd(args.denops),
@@ -146,7 +144,7 @@ export class Column extends BaseColumn<Params> {
 
     // set highlight
     const hl_group = `ddu_column_${iconData.hl_group}`;
-    const iconByteLength = this.textEncoder.encode(iconData.icon).length;
+    const iconByteLength = textEncoder.encode(iconData.icon).length;
     const color = (() => {
       const col = iconData.color;
       return col.startsWith("!")
