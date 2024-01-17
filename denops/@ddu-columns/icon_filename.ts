@@ -383,6 +383,7 @@ const fileIcons = new Map<string, IconData>([                                   
   ["awk",       { icon: "", hl_group: "file_awk",        color: palette.default     }], // nf-dev-terminal
   ["bash",      { icon: "", hl_group: "file_bash",       color: palette.default     }], // nf-dev-terminal
   ["bat",       { icon: "", hl_group: "file_bat",        color: palette.default     }], // nf-dev-aptana
+  ["bib",       { icon: "", hl_group: "file_tex",        color: palette.default     }], // nf-seti-tex
   ["blend",     { icon: "󰂫", hl_group: "file_blend",      color: palette.darkOrange  }], // nf-md-blender_software
   ["bmp",       { icon: "", hl_group: "file_bmp",        color: palette.aqua        }], // nf-fa-file_image_o
   ["c",         { icon: "", hl_group: "file_c",          color: palette.blue        }], // nf-custom-c
@@ -460,6 +461,7 @@ const fileIcons = new Map<string, IconData>([                                   
   ["slim",      { icon: "", hl_group: "file_slim",       color: palette.orange      }], // nf-seti-html
   ["sln",       { icon: "", hl_group: "file_sln",        color: palette.purple      }], // nf-dev-visualstudio
   ["styl",      { icon: "", hl_group: "file_styl",       color: palette.green       }], // nf-dev-stylus
+  ["sty",       { icon: "", hl_group: "file_tex",        color: palette.default     }], // nf-seti-tex
   ["swift",     { icon: "", hl_group: "file_swift",      color: palette.orange      }], // nf-dev-swift
   ["tex",       { icon: "", hl_group: "file_tex",        color: palette.default     }], // nf-seti-tex
   ["toml",      { icon: "", hl_group: "file_toml",       color: palette.default     }], // nf-custom-toml
