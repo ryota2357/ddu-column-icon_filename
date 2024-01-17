@@ -339,6 +339,7 @@ const folderIcons: Record<"expand" | "collaps", IconData> = {
 
 // deno-fmt-ignore-start
 const specialIcons = new Map<string, IconData>([                                                   // nerd font class name
+  [".bashrc",             { icon: "", hl_group: "sp_bashrc",        color: palette.default    }], // nf-dev-terminal
   [".ds_store",           { icon: "", hl_group: "sp_ds_store",      color: palette.default    }], // nf-dev-aptana
   [".editorconfig",       { icon: "", hl_group: "sp_editorconfig",  color: palette.default    }], // nf-dev-aptana
   [".eslintrc.js",        { icon: "", hl_group: "sp_eslintrc",      color: palette.purple     }], // nf-seti-eslint
@@ -350,7 +351,9 @@ const specialIcons = new Map<string, IconData>([                                
   [".github/",            { icon: "", hl_group: "sp_github",        color: "Directory"        }], // nf-custom-folder_github
   [".gitignore",          { icon: "", hl_group: "sp_gitignore",     color: palette.darkOrange }], // nf-dev-git
   [".gitlab-ci.yml",      { icon: "", hl_group: "sp_gitlab_ci",     color: palette.default    }], // nf-fa-gitlab
+  [".vimrc",              { icon: '', hl_group: "sp_vimrc",         color: palette.green      }], // nf-dev-vim
   [".vscode",             { icon: "", hl_group: "sp_vscode",        color: "Directory"        }], // nf-dev-visualstudio
+  [".zshrc",              { icon: "", hl_group: "sp_zshrc",         color: palette.default    }], // nf-dev-terminal
   ["changelog",           { icon: "", hl_group: "sp_changelog",     color: palette.green      }], // nf-fa-history
   ["changelog.md",        { icon: "", hl_group: "sp_changelog",     color: palette.green      }], // nf-fa-history
   ["config.ru",           { icon: "", hl_group: "sp_config_ru",     color: palette.default    }], // nf-dev-ruby
@@ -380,6 +383,7 @@ const fileIcons = new Map<string, IconData>([                                   
   ["awk",       { icon: "", hl_group: "file_awk",        color: palette.default     }], // nf-dev-terminal
   ["bash",      { icon: "", hl_group: "file_bash",       color: palette.default     }], // nf-dev-terminal
   ["bat",       { icon: "", hl_group: "file_bat",        color: palette.default     }], // nf-dev-aptana
+  ["bib",       { icon: "", hl_group: "file_tex",        color: palette.default     }], // nf-seti-tex
   ["blend",     { icon: "󰂫", hl_group: "file_blend",      color: palette.darkOrange  }], // nf-md-blender_software
   ["bmp",       { icon: "", hl_group: "file_bmp",        color: palette.aqua        }], // nf-fa-file_image_o
   ["c",         { icon: "", hl_group: "file_c",          color: palette.blue        }], // nf-custom-c
@@ -457,6 +461,7 @@ const fileIcons = new Map<string, IconData>([                                   
   ["slim",      { icon: "", hl_group: "file_slim",       color: palette.orange      }], // nf-seti-html
   ["sln",       { icon: "", hl_group: "file_sln",        color: palette.purple      }], // nf-dev-visualstudio
   ["styl",      { icon: "", hl_group: "file_styl",       color: palette.green       }], // nf-dev-stylus
+  ["sty",       { icon: "", hl_group: "file_tex",        color: palette.default     }], // nf-seti-tex
   ["swift",     { icon: "", hl_group: "file_swift",      color: palette.orange      }], // nf-dev-swift
   ["tex",       { icon: "", hl_group: "file_tex",        color: palette.default     }], // nf-seti-tex
   ["toml",      { icon: "", hl_group: "file_toml",       color: palette.default     }], // nf-custom-toml
