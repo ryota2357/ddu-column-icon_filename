@@ -379,7 +379,7 @@ const specialIcons = new Map<string, IconData>([                                
 const fileIcons = new Map<string, IconData>([                                            // nerd font class name
   ["ai",        { icon: "", hl_group: "file_ai",         color: palette.darkOrange  }], // nf-dev-illustrator
   ["apk",       { icon: "", hl_group: "file_apk",        color: palette.green       }], // nf-dev-android
-  ["astro",     { icon: "", hl_group: "file_astro",      color: palette.orange      }], // nf-dev-code
+  ["astro",     { icon: "", hl_group: "file_astro",      color: palette.orange      }], // nf-custom-astro
   ["awk",       { icon: "", hl_group: "file_awk",        color: palette.default     }], // nf-dev-terminal
   ["bash",      { icon: "", hl_group: "file_bash",       color: palette.default     }], // nf-dev-terminal
   ["bat",       { icon: "", hl_group: "file_bat",        color: palette.default     }], // nf-dev-aptana
